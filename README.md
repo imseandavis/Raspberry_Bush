@@ -36,14 +36,15 @@ Command central will be the standalone workstation from which everything is ran.
 # Kubernetes Master Node Setup
   - First Login To the Raspberry Pi For The First Time With The Credentials: pi/raspberry
   - Change Your Root Password
-  - Download the Kubernetes Master Build Setup Script by running the following:
- <code> sudo curl -sSL https://raw.githubusercontent.com/imseandavis/Raspberry_Bush/master/Build_Kub_Node.sh -o build_kub_node.sh</code>
-  - Run The Script By Specifying the parameters needed as shown in the following example: <code>
-  sudo sh build_kub_node.sh Kub-Master <Desired IP (Ex. 192.168.1.100)> <Desired Gateway IP (Ex. 192.168.1.1) <Desired DNS Server IP (Ex. 192.168.1.10)> 
-</code> This process will take between 10-12 minutes (will vary based on sd card speed) and will reboot when completed.
-  - Next Run The Kub Configuration script by running the following command:
-  <code>sudo sh config.sh
-  </code>
+  - Download the setup package by running the following command:
+    - <code>sudo curl -sSL https://raw.githubusercontent.com/imseandavis/Raspberry_Bush/master/setup.sh -o setup.sh</code>
+  - Run the pi config script by running the following command:
+    - <code> sudo sh prepare_pi.sh</code>
+  - After reboot, run the node setup script by running the following command:
+    - <code> sudo sh build_kub_node.sh Kub-Master [Desired IP] [Desired Gateway IP] [Desired DNS Server IP] </code>
+    - This process will take between 10-12 minutes (will vary based on sd card speed) and will reboot when completed.
+  - After reboot, run the kubernetes master node configuration script by running the following command:
+    - <code> sudo sh config_kub_master.sh </code>
 
 
 # Other Housekeeping (Optional)
