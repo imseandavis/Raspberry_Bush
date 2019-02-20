@@ -1,5 +1,27 @@
 #!/bin/sh
 
+#Download Config Files
+echo "Pick A Role To Install: (M)aster Node or (S)lave Node 
+while :
+do
+  read INPUT_STRING
+  case $INPUT_STRING in
+	M)
+    echo Downloading Kube Master Node Config File....
+    sudo curl -sSL https://raw.githubusercontent.com/imseandavis/Raspberry_Bush/master/build_kube_master.sh -o build_kube_master.sh
+    break;
+    ;;
+	S)
+    echo Downloading Kube Slave Node Config File....
+    sudo curl -sSL https://raw.githubusercontent.com/imseandavis/Raspberry_Bush/master/build_kube_slave.sh -o build_kube_slave.sh
+    break;
+    ;;
+	*)
+    echo "Please Select A Valid Role..."
+    ;;
+  esac
+done
+
 # Turn on SSH
 echo Turning on SSH...
 sudo touch /boot/ssh
@@ -25,26 +47,6 @@ static ip_address=$ip/24
 static routers=$gateway
 static domain_name_servers=$dns
 EOT
-
-#Download Config Files
-echo "Pick A Role To Install: (M)aster Node or (S)lave Node 
-while :
-do
-  read INPUT_STRING
-  case $INPUT_STRING in
-	M)
-		echo Downloading Kube Master Node Config File....
-    sudo curl -sSL https://raw.githubusercontent.com/imseandavis/Raspberry_Bush/master/build_kube_master.sh -o build_kube_master.sh
-		;;
-	S)
-    echo Downloading Kube Slave Node Config File....
-    sudo curl -sSL https://raw.githubusercontent.com/imseandavis/Raspberry_Bush/master/build_kube_slave.sh -o build_kube_slave.sh
-		;;
-	*)
-		echo "Please Select A Valid Role..."
-		;;
-  esac
-done
 
 # Housekeeping
 echo Cleaning up....
