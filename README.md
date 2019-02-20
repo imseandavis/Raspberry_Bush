@@ -29,3 +29,7 @@ There are two ways you can build this, I chose to go the Power over Ethernet (Po
 <code>
 sudo curl -sSL https://raw.githubusercontent.com/imseandavis/Raspberry_Bush/master/Build_Kubernetes_Master.sh -o Build_Kubernetes_Master.sh
 </code>
+
+<code>
+  sudo sh build.sh Kub-Master <Desired IP (Ex. 192.168.1.100)> <Desired DNS Server IP (Ex. 10.1.10.1)> 
+</code>
