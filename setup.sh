@@ -1,27 +1,5 @@
 #!/bin/sh
 
-#Download Config Files
-echo "Pick A Role To Install: (M)aster Node or (S)lave Node 
-while :
-do
-  read INPUT_STRING
-  case $INPUT_STRING in
-	M)
-    echo Downloading Kube Master Node Config File....
-    sudo curl -sSL https://raw.githubusercontent.com/imseandavis/Raspberry_Bush/master/build_kube_master.sh -o build_kube_master.sh
-    break;
-    ;;
-	S)
-    echo Downloading Kube Slave Node Config File....
-    sudo curl -sSL https://raw.githubusercontent.com/imseandavis/Raspberry_Bush/master/build_kube_slave.sh -o build_kube_slave.sh
-    break;
-    ;;
-	*)
-    echo "Please Select A Valid Role..."
-    ;;
-  esac
-done
-
 # Turn on SSH
 echo Turning on SSH...
 sudo touch /boot/ssh
