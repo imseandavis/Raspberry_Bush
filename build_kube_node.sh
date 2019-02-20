@@ -1,26 +1,6 @@
 #!/bin/sh
 
-#Download Config Files
-echo "Pick A Role To Install: (M)aster Node or (S)lave Node"
-while :
-do
-  read INPUT_STRING
-  case $INPUT_STRING in
-	M)
-    echo Downloading Kube Master Node Config File....
-    curl -sSL https://raw.githubusercontent.com/imseandavis/Raspberry_Bush/master/config_kube_master.sh -o config_kube.sh
-    break;
-    ;;
-	S)
-    echo Downloading Kube Slave Node Config File....
-    curl -sSL https://raw.githubusercontent.com/imseandavis/Raspberry_Bush/master/config_kube_slave.sh -o config_kube.sh
-    break;
-    ;;
-	*)
-    echo Please Select A Valid Role...
-    ;;
-  esac
-done
+
 
 # Install Docker
 #echo Installing Docker...
@@ -45,9 +25,49 @@ echo "deb http://apt.kubernetes.io/ kubernetes-xenial main" | sudo tee /etc/apt/
 sudo apt-get update -q && \
 sudo apt-get install -qy kubeadm
 
-# Configure Kubernetes Node
-echo Configure The Kubernetes Node...
-sudo sh config_kube.sh
+#Download Config Files
+echo "Pick A Role To Install: (M)aster Node or (S)lave Node"
+while :
+do
+  read INPUT_STRING
+  case $INPUT_STRING in
+	M)
+    echo Configuring Kube Master Node....
+    
+    # Init KubeAdm
+    echo Init KubeAdm...
+    sudo kubeadm init
+
+    # Start Kube Cluster
+    echo Start Kube Cluster...
+    mkdir -p $HOME/.kube
+    sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
+    sudo chown $(id -u):$(id -g) $HOME/.kube/config
+
+    #Verify Kubernetes Master Node Is Up and Running
+    echo Verify Kubernetes Master Node Is Up and Running...
+    kubectl get nodes
+    
+    break;
+    ;;
+	S)
+    echo Configuring Kube Slave Node....
+    
+    # Update Kube Config
+    echo Join Kube Slave Node To Master...
+    sudo kubeadm join --token TOKEN 192.168.1.100:6443 --discovery-token-ca-cert-hash HASH
+
+    #Verify Master Is Up
+    echo Verify Kubernetes Node Has Been Added Successful...
+    kubectl get nodes
+    
+    break;
+    ;;
+	*)
+    echo Please Select A Valid Role...
+    ;;
+  esac
+done
 
 # Housekeeping
 echo Doing A Little Housekeeping....
