@@ -45,14 +45,15 @@ sudo apt-get update -q && \
 sudo apt-get install -qy kubeadm
 
 # Configure Kubernetes Node
+echo Configure The Kubernetes Node...
 sudo sh config_kube.sh
 
 # Housekeeping
-echo Cleaning up....
+echo Doing A Little Housekeeping....
 rm -f build_kube_node.sh
 #rm -f config_kube.sh
 
 # Reboot
-echo Rebooting in 5 seconds...
-sleep 5
+echo Rebooting in 10 seconds...
+sleep 10
 sudo reboot now
