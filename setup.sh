@@ -1,3 +1,5 @@
+#!/bin/sh
+
 # Turn on SSH
 echo Turning on SSH...
 sudo touch /boot/ssh
