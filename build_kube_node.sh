@@ -23,12 +23,13 @@ do
 done
 
 # Install Docker
-echo Installing Docker...
+#echo Installing Docker...
+export VERSION=18.06.03 && \
 curl -sSL get.docker.com | sh && \
-sudo usermod pi -aG docker
+sudo usermod -aG docker pi
 
 # Disable Swap
-echo Disabling Swap File...
+echo Disabling Swap...
 sudo dphys-swapfile swapoff && \
 sudo dphys-swapfile uninstall && \
 sudo update-rc.d dphys-swapfile remove
