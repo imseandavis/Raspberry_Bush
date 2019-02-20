@@ -25,4 +25,7 @@ There are two ways you can build this, I chose to go the Power over Ethernet (Po
   - SD Card Image - [Raspbian Stretch Lite]()
   
   
-  TBC
+# Setup
+<code>
+sudo curl -sSL https://raw.githubusercontent.com/imseandavis/Raspberry_Bush/master/Build_Kubernetes_Master.sh -o Build_Kubernetes_Master.sh
+</code>
