@@ -50,7 +50,7 @@ sudo sh config_kube.sh
 # Housekeeping
 echo Cleaning up....
 rm -f build_kube_node.sh
-rm -f config_kube.sh
+#rm -f config_kube.sh
 
 # Reboot
 echo Rebooting in 5 seconds...
