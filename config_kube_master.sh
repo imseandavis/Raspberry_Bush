@@ -1,19 +1,21 @@
 #!/bin/sh
 
-# Update Kube Config
+# Init KubeAdm
 echo Init KubeAdm...
-sudo kubeadm init # --config kubeadm_conf.yaml
+sudo kubeadm init
 
 # Start Kube Cluster
-echo Start Kub Cluster...
+echo Start Kube Cluster...
 mkdir -p $HOME/.kube
 sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
 sudo chown $(id -u):$(id -g) $HOME/.kube/config
 
-#Verify Master Is Up
-echo Verify Kubernetes Master Node Is Up...
+#Verify Kubernetes Master Node Is Up and Running
+echo Verify Kubernetes Master Node Is Up and Running...
 kubectl get nodes
 
 # Housekeeping
 echo Do Some Housekeeping...
-rm -f config_kube_master.sh
+rm -f config_kube.sh
+
+echo Done!
