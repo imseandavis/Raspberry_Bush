@@ -1,5 +1,27 @@
 #!/bin/sh
 
+#Download Config Files
+echo "Pick A Role To Install: (M)aster Node or (S)lave Node 
+while :
+do
+  read INPUT_STRING
+  case $INPUT_STRING in
+	M)
+    echo Downloading Kube Master Node Config File....
+    sudo curl -sSL https://raw.githubusercontent.com/imseandavis/Raspberry_Bush/master/config_kube_master.sh -o config_kube.sh
+    break;
+    ;;
+	S)
+    echo Downloading Kube Slave Node Config File....
+    sudo curl -sSL https://raw.githubusercontent.com/imseandavis/Raspberry_Bush/master/config_kube_slave.sh -o config_kube.sh
+    break;
+    ;;
+	*)
+    echo "Please Select A Valid Role..."
+    ;;
+  esac
+done
+
 # Install Docker
 echo Installing Docker...
 curl -sSL get.docker.com | sh && \
@@ -22,14 +44,13 @@ echo "deb http://apt.kubernetes.io/ kubernetes-xenial main" | sudo tee /etc/apt/
 sudo apt-get update -q && \
 sudo apt-get install -qy kubeadm
 
-#Download Config Files
-echo Downloading Master Node Config Files....
-sudo curl -sSL https://raw.githubusercontent.com/imseandavis/Raspberry_Bush/master/config_kube_master.sh -o config_kube_master.sh
-sudo curl -sSL https://raw.githubusercontent.com/imseandavis/Raspberry_Bush/master/kubeadm_conf.yaml -o kubeadm_conf.yaml
+# Configure Kubernetes Node
+sudo sh config_kube.sh
 
 # Housekeeping
 echo Cleaning up....
 rm -f build_kube_node.sh
+rm -f config_kube.sh
 
 # Reboot
 echo Rebooting in 5 seconds...
