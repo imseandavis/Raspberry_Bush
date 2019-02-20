@@ -9,7 +9,7 @@ dns=$3 # should be of format: 192.168.1.1
 sudo hostnamectl --transient set-hostname $hostname
 sudo hostnamectl --static set-hostname $hostname
 sudo hostnamectl --pretty set-hostname $hostname
-sudo sed -i s/raspberrypi/$hostname/g /etc/hosts
+sudo sed -i 's/raspberrypi/$hostname/g' /etc/hosts
 
 # Set the static ip
 sudo cat <<EOT >> /etc/dhcpcd.conf
@@ -37,3 +37,6 @@ curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key add
 echo "deb http://apt.kubernetes.io/ kubernetes-xenial main" | sudo tee /etc/apt/sources.list.d/kubernetes.list && \
 sudo apt-get update -q && \
 sudo apt-get install -qy kubeadm
+
+# Reboot
+sudo reboot now
