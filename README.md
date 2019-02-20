@@ -35,6 +35,7 @@ Command central will be the standalone workstation from which everything is ran.
 
 # Kubernetes Master Node Setup
   - First Login To the Raspberry Pi For The First Time With The Credentials: pi/raspberry
+  - Change Your Root Password
   - Download the Kubernetes Master Build Setup Script by running the following:
  <code> sudo curl -sSL https://raw.githubusercontent.com/imseandavis/Raspberry_Bush/master/Build_Kub_Node.sh -o build_kub_node.sh</code>
   - Run The Script By Specifying the parameters needed as shown in the following example: <code>
@@ -45,21 +46,7 @@ Command central will be the standalone workstation from which everything is ran.
   </code>
 
 
-b.	Imaging SD Card
-i.	Unzip the Raspbian Image
-ii.	Flash Using Etcher
-iii.	Insert into Raspberry Pi
-
-c.	Setup Kubernetes Master (GUI)
-i.	Enable SSH - sudo touch /boot/ssh
-ii.	Open Config Tool – sudo raspi-config
-1.	Change Root Password – Option 1
-2.	Change Hostname to Kub-Master – Option 2, N1
-3.	Setup Time Zone – Option 4, I2
-4.	Setup WiFi Country – Option 4, I4
-5.	Update Raspi Config – Option 8
-6.	Finish Raspi-Config
-d.	Setup Kubernetes Master (Commandline)
-i.	Change Root Password (passwd)
-ii.	Change HostName - nano hostname_and_ip.sh
-iii.	
+# Other Housekeeping (Optional)
+2.	Setup Time Zone – Option 4, I2
+3.	Setup WiFi Country – Option 4, I4
+4.	Update Raspi Config – Option 8)
