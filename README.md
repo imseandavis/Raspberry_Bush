@@ -24,12 +24,39 @@ There are two ways you can build this, I chose to go the Power over Ethernet (Po
   - Software To Burn SD Card Images - [Etcher.io]()
   - SD Card Image - [Raspbian Stretch Lite]()
   
-  
-# Setup
-<code>
-sudo curl -sSL https://raw.githubusercontent.com/imseandavis/Raspberry_Bush/master/Build_Kubernetes_Master.sh -o Build_Kubernetes_Master.sh
-</code>
 
-<code>
+# Image SD Card
+  - Download the Raspbian Stretch Lite Image and and Extract the ISO
+  - Flash To SD Card With Etcher
+
+
+# Command Central Setup
+Command central will be the standalone workstation from which everything is ran. This will also be where we run our DevOps and Choas jobs from as well. To be continued....
+
+# Kubernetes Master Node Setup
+  - First Login To the Raspberry Pi For The First Time With The Credentials: pi/raspberry
+  - Download and Run The Kubernetes Master Build Setup Script by running the following: <code>
+      sudo curl -sSL https://raw.githubusercontent.com/imseandavis/Raspberry_Bush/master/Build_Kubernetes_Master.sh -o Build_Kubernetes_Master.sh</code>
+ - After the reboot, SSH In From Your Desktop and run the configuraiton script by running the following: <code>
   sudo sh build.sh Kub-Master <Desired IP (Ex. 192.168.1.100)> <Desired DNS Server IP (Ex. 10.1.10.1)> 
 </code>
+
+
+b.	Imaging SD Card
+i.	Unzip the Raspbian Image
+ii.	Flash Using Etcher
+iii.	Insert into Raspberry Pi
+
+c.	Setup Kubernetes Master (GUI)
+i.	Enable SSH - sudo touch /boot/ssh
+ii.	Open Config Tool – sudo raspi-config
+1.	Change Root Password – Option 1
+2.	Change Hostname to Kub-Master – Option 2, N1
+3.	Setup Time Zone – Option 4, I2
+4.	Setup WiFi Country – Option 4, I4
+5.	Update Raspi Config – Option 8
+6.	Finish Raspi-Config
+d.	Setup Kubernetes Master (Commandline)
+i.	Change Root Password (passwd)
+ii.	Change HostName - nano hostname_and_ip.sh
+iii.	
