@@ -8,12 +8,12 @@ do
   case $INPUT_STRING in
 	M)
     echo Downloading Kube Master Node Config File....
-    sudo curl -sSL https://raw.githubusercontent.com/imseandavis/Raspberry_Bush/master/config_kube_master.sh -o config_kube.sh
+    curl -sSL https://raw.githubusercontent.com/imseandavis/Raspberry_Bush/master/config_kube_master.sh -o config_kube.sh
     break;
     ;;
 	S)
     echo Downloading Kube Slave Node Config File....
-    sudo curl -sSL https://raw.githubusercontent.com/imseandavis/Raspberry_Bush/master/config_kube_slave.sh -o config_kube.sh
+    curl -sSL https://raw.githubusercontent.com/imseandavis/Raspberry_Bush/master/config_kube_slave.sh -o config_kube.sh
     break;
     ;;
 	*)
