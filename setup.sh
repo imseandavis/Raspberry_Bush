@@ -26,6 +26,14 @@ static routers=$gateway
 static domain_name_servers=$dns
 EOT
 
+#Download Config Files
+echo Downloading Kube Node Config File....
+sudo curl -sSL https://raw.githubusercontent.com/imseandavis/Raspberry_Bush/master/config_kub_node.sh -o config_kube_node.sh
+
+# Housekeeping
+echo Cleaning up....
+rm -f setup.sh
+
 # Reboot
 echo Rebooting in 5 seconds...
 sleep 5
