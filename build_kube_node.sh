@@ -24,12 +24,12 @@ sudo apt-get install -qy kubeadm
 
 #Download Config Files
 echo Downloading Master Node Config Files....
-sudo curl -sSL https://raw.githubusercontent.com/imseandavis/Raspberry_Bush/master/config_kub_master.sh -o config.sh
-sudo curl -sSL https://raw.githubusercontent.com/imseandavis/Raspberry_Bush/master/kubeadm_conf.yaml -o kubadm_conf.yaml
+sudo curl -sSL https://raw.githubusercontent.com/imseandavis/Raspberry_Bush/master/config_kube_master.sh -o config_kube_master.sh
+sudo curl -sSL https://raw.githubusercontent.com/imseandavis/Raspberry_Bush/master/master_kubeadm_conf.yaml -o kubadm_conf.yaml
 
 # Housekeeping
 echo Cleaning up....
-rm -f build_kub_node.sh
+rm -f build_kube_node.sh
 
 # Reboot
 echo Rebooting in 5 seconds...
