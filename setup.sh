@@ -25,3 +25,8 @@ static ip_address=$ip/24
 static routers=$gateway
 static domain_name_servers=$dns
 EOT
+
+# Reboot
+echo Rebooting in 5 seconds...
+sleep 5
+sudo reboot now
