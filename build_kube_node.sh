@@ -1,7 +1,7 @@
 #!/bin/sh
 
 #Download Config Files
-echo "Pick A Role To Install: (M)aster Node or (S)lave Node 
+echo "Pick A Role To Install: (M)aster Node or (S)lave Node"
 while :
 do
   read INPUT_STRING
