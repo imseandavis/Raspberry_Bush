@@ -1,8 +1,7 @@
-# Last Updated: 2/19/2019
-# Built For Kubernetes v1.13.3
+# Last Updated: 2/19/2019 - Built For Kubernetes v1.13.3
 
 # Overview
-This is a project to help you create a Raspberry Pi cluster and demo DevOps practices from build/release to Chaos Engineering on it. According to a few friends, it's called a Raspberry Bush. Credit for the name goes to Antony Zimzores. Check out the companion blog article that goes into greater detail of thre build and process, [here](https://www.seanasaservice.com/blog/raspberry-bush). Altogether it cost around $850 and procided me with a lab with the following specs: 24 Cores @ 1.4GHz / 6GB RAM / 384GB Storage
+This is a project to help you create a Raspberry Pi cluster and demo DevOps practices from build/release to Chaos Engineering on it. According to a few friends, it's called a Raspberry Bush. Credit for the name goes to Antony Zimzores. Check out the companion blog article that goes into greater detail of thre build and process, [here](https://www.seanasaservice.com/blog/raspberry-bush). Altogether it cost around $850 and provided me with a lab with the following specs: 24 Cores @ 1.4GHz / 6GB RAM / 384GB Storage
 
 
 # Build Materials
