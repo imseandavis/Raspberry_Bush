@@ -26,6 +26,10 @@ static routers=$gateway
 static domain_name_servers=$dns
 EOT
 
+# Download Build Script
+echo Downloading Kube Node Build Script...
+curl -sSL https://raw.githubusercontent.com/imseandavis/Raspberry_Bush/master/build_kube_node.sh -o build_kube_node.sh
+
 # Housekeeping
 echo Cleaning up....
 rm -f setup.sh
