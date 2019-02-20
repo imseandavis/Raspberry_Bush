@@ -50,6 +50,7 @@ sudo apt-get install -qy kubeadm
 #Download Config Files
 echo Downloading config files....
 sudo curl -sSL https://raw.githubusercontent.com/imseandavis/Raspberry_Bush/master/Config_Kubernetes_Master.sh -o config.sh
+sudo curl -sSL https://raw.githubusercontent.com/imseandavis/Raspberry_Bush/master/kubeadm_conf.yaml -o kubadm_conf.yaml
 
 # Housekeeping
 echo Cleaning up....
