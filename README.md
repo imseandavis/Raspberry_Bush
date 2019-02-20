@@ -37,11 +37,11 @@ Command central will be the standalone workstation from which everything is ran.
   - First Login To the Raspberry Pi For The First Time With The Credentials: pi/raspberry
   - Change Your Root Password
   - Download the setup package by running the following command:
-    - <code>sudo curl -sSL https://raw.githubusercontent.com/imseandavis/Raspberry_Bush/master/setup.sh -o setup.sh</code>
+    - <code>sudo curl -sSL https://raw.githubusercontent.com/imseandavis/Raspberry_Bush/master/prepare_pi.sh -o prepare_pi.sh</code>
   - Run the pi config script by running the following command:
-    - <code> sudo sh prepare_pi.sh</code>
+    - <code> sudo sh prepare_pi.sh [Hostname] [Desired IP] [Desired Gateway IP] [Desired DNS Server IP]</code>
   - After reboot, run the node setup script by running the following command:
-    - <code> sudo sh build_kub_node.sh Kub-Master [Desired IP] [Desired Gateway IP] [Desired DNS Server IP] </code>
+    - <code> sudo sh build_kub_node.sh</code>
     - This process will take between 10-12 minutes (will vary based on sd card speed) and will reboot when completed.
   - After reboot, run the kubernetes master node configuration script by running the following command:
     - <code> sudo sh config_kub_master.sh </code>
