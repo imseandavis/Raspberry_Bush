@@ -17,7 +17,7 @@ do
     break;
     ;;
 	*)
-    echo "Please Select A Valid Role..."
+    echo Please Select A Valid Role...
     ;;
   esac
 done
