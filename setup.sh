@@ -28,7 +28,7 @@ EOT
 
 #Download Config Files
 echo Downloading Kube Node Config File....
-sudo curl -sSL https://raw.githubusercontent.com/imseandavis/Raspberry_Bush/master/build_kub_node.sh -o build_kube_node.sh
+sudo curl -sSL https://raw.githubusercontent.com/imseandavis/Raspberry_Bush/master/build_kube_node.sh -o build_kube_node.sh
 
 # Housekeeping
 echo Cleaning up....
