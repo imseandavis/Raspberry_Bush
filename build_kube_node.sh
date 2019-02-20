@@ -25,7 +25,7 @@ sudo apt-get install -qy kubeadm
 #Download Config Files
 echo Downloading Master Node Config Files....
 sudo curl -sSL https://raw.githubusercontent.com/imseandavis/Raspberry_Bush/master/config_kube_master.sh -o config_kube_master.sh
-sudo curl -sSL https://raw.githubusercontent.com/imseandavis/Raspberry_Bush/master/master_kubeadm_conf.yaml -o kubeadm_conf.yaml
+sudo curl -sSL https://raw.githubusercontent.com/imseandavis/Raspberry_Bush/master/kubeadm_conf.yaml -o kubeadm_conf.yaml
 
 # Housekeeping
 echo Cleaning up....
