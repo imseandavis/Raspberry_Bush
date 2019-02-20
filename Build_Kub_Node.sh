@@ -4,12 +4,13 @@
 echo Turning on SSH...
 sudo touch /boot/ssh
 
-#Set Hostname
+#Init Variables
 hostname=$1
-ip=$2 # should be of format: 192.168.1.100
-dns=$3 # should be of format: 192.168.1.1
+ip=$2 #IP
+gateway=$3 #IP Format
+dns=$4 #IP Format
 
-# Change the hostname
+# Update Hostname
 echo Setting Hostname...
 sudo hostnamectl --transient set-hostname $hostname
 sudo hostnamectl --static set-hostname $hostname
@@ -21,7 +22,7 @@ echo Setting Static IP to: $ip ...
 sudo cat <<EOT >> /etc/dhcpcd.conf
 interface eth0
 static ip_address=$ip/24
-static routers=$dns
+static routers=$gateway
 static domain_name_servers=$dns
 EOT
 
@@ -54,7 +55,7 @@ sudo curl -sSL https://raw.githubusercontent.com/imseandavis/Raspberry_Bush/mast
 
 # Housekeeping
 echo Cleaning up....
-rm -f build.sh
+rm -f build_kub_node.sh
 
 # Reboot
 echo Rebooting in 5 seconds...
