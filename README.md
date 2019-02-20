@@ -5,7 +5,7 @@ This is a project to help you create a Raspberry Pi cluster and demo DevOps prac
 
 
 # Build Materials
-There are two ways you can build this, I chose to go the Power over Ethernet (PoE) route as the switch I chose provided me with and additional two 1GB uplink ports and gave me the ability to consolidate the need for power into a single connection to the Pi. When I did the cost analysis, the additional price of the PoE Hats + PoE Switch was only around $100 difference so it didn't make sense not to go with the cleaner look, less cables, one less power supply, and 2 additional network ports. Feel free to use whatever switch you like as long as it doesnt exceed the INTERIOR dimensions of the case your using. Luckily I pulled spec sheets on all switches considered and found a fair compromise of what I wanted and kept things tidy and simple. I did wish that had gone with 128GB cards but those cards get expensive when your buying 8, your wallets milage may vary.
+There are two ways you can build this, I chose to go the Power over Ethernet (PoE) route as the switch I chose provided me with and additional two 1GB uplink ports and gave me the ability to consolidate the need for power into a single connection to the Pi. When I did the cost analysis, the additional price of the PoE Hats + PoE Switch was only around $100 difference so it didn't make sense not to go with the cleaner look, less cables, one less power supply, and 2 additional network ports. Feel free to use whatever switch you like as long as it doesnt exceed the INTERIOR dimensions of the case your using. Luckily I pulled spec sheets on all switches considered and found a fair compromise of what I wanted and kept things tidy and simple. I did wish that had gone with 128GB cards but those cards get expensive when your buying 8, your wallets milage may vary. I highly reccomend the extreme pro models as the performance is great.
 
   - Required
     - 8x [CanaKit Raspberry Pi 3 B+](https://www.canakit.com/raspberry-pi-3-model-b-plus.html) ($35/ea.)
@@ -40,7 +40,7 @@ Command central will be the standalone workstation from which everything is ran.
  <code> sudo curl -sSL https://raw.githubusercontent.com/imseandavis/Raspberry_Bush/master/Build_Kub_Node.sh -o build_kub_node.sh</code>
   - Run The Script By Specifying the parameters needed as shown in the following example: <code>
   sudo sh build_kub_node.sh Kub-Master <Desired IP (Ex. 192.168.1.100)> <Desired Gateway IP (Ex. 192.168.1.1) <Desired DNS Server IP (Ex. 192.168.1.10)> 
-</code> This process will take between 6-10 minutes and wil reboot when completed.
+</code> This process will take between 10-12 minutes (will vary based on sd card speed) and will reboot when completed.
   - Next Run The Kub Configuration script by running the following command:
   <code>sudo sh config.sh
   </code>
