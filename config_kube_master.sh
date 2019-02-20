@@ -1,8 +1,5 @@
 #!/bin/sh
 
-# Download The Kub Config File From GitHub
-curl -sSL github.com/imseandavis/Raspberry_Bush/new/master/kubadmin_conf.yaml
-
 # Update Kub Config
 kubeadm init --config kubeadm_conf.yaml
 
@@ -13,3 +10,6 @@ $ sudo chown $(id -u):$(id -g) $HOME/.kube/config
 
 #Verify Master Is Up
 kubectl get nodes
+
+# Housekeeping
+rm -f config_kube_master.sh
