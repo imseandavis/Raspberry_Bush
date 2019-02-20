@@ -1,7 +1,7 @@
 #!/bin/sh
 
 # Update Kub Config
-kubeadm init --config kubeadm_conf.yaml
+sudo kubeadm init # --config kubeadm_conf.yaml
 
 # Start Kub Cluster
 mkdir -p $HOME/.kube
