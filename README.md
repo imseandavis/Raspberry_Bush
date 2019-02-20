@@ -37,7 +37,7 @@ Command central will be the standalone workstation from which everything is ran.
   - First Login To the Raspberry Pi For The First Time With The Credentials: pi/raspberry
   - Change Your Root Password
   - Download the setup package by running the following command:
-    - <code>sudo curl -sSL https://raw.githubusercontent.com/imseandavis/Raspberry_Bush/master/setup.sh -o setup.sh</code>
+    - <code>curl -sSL https://raw.githubusercontent.com/imseandavis/Raspberry_Bush/master/setup.sh -o setup.sh</code>
   - Run the pi config script by running the following command:
     - <code> sudo sh setup.sh [Hostname] [Desired IP] [Desired Gateway IP] [Desired DNS Server IP]</code>
   - After reboot, run the node setup script by running the following command:
