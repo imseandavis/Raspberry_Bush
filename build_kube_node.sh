@@ -1,7 +1,5 @@
 #!/bin/sh
 
-
-
 # Install Docker
 #echo Installing Docker...
 export VERSION=18.06.0 && \
