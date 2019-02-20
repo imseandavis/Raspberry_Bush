@@ -1,5 +1,8 @@
 #!/bin/sh
 
+# Turn on SSH
+sudo touch /boot/ssh
+
 #Set Hostname
 hostname=$1
 ip=$2 # should be of format: 192.168.1.100
