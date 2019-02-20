@@ -10,3 +10,6 @@ kubeadm init --config kubeadm_conf.yaml
 mkdir -p $HOME/.kube
 $ sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
 $ sudo chown $(id -u):$(id -g) $HOME/.kube/config
+
+#Verify Master Is Up
+kubectl get nodes
