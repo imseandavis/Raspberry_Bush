@@ -58,7 +58,7 @@ For those who prefer Raspbian for thier Kube nodes. These machines will house th
 ## Ubuntu Mate Kubernetes Node
 Not working yet...
 
-## Windows Node (For Native .NET Core Demo)
+## Windows Node (Why? Because I Can)
 If you are interested in standing up a single instance of Windows to deploy .NET Core apps natively to in order to compare performance or just because you want to, here's your build.
    - Download the tool to install Windows on pie [here](https://github.com/WOA-Project/WOA-Deployer-Rpi)
    - Follow the instructions [here](https://github.com/WOA-Project/guides/blob/master/GettingWOA.md) to obtain a Windows on ARM WIM Image
