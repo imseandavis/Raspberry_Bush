@@ -36,7 +36,7 @@ sudo update-rc.d dphys-swapfile remove
 echo Enabling CGROUPS...
 sudo cp /boot/cmdline.txt /boot/cmdline_backup.txt
 orig="$(head -n1 /boot/cmdline.txt) cgroup_enable=cpuset cgroup_enable=memory"
-$orig | sudo tee /boot/cmdline.txt
+echo $orig | sudo tee /boot/cmdline.txt > /dev/null
 
 # Download Kube Node Build Script
 echo Downloading Kube Node Build Script...
