@@ -6,16 +6,6 @@ export VERSION=18.06.0 && \
 curl -sSL get.docker.com | sh && \
 sudo usermod -aG docker pi
 
-# Disable Swap
-echo Disabling Swap...
-sudo dphys-swapfile swapoff && \
-sudo dphys-swapfile uninstall && \
-sudo update-rc.d dphys-swapfile remove
-echo Adding " cgroup_enable=cpuset cgroup_enable=memory" to /boot/cmdline.txt
-sudo cp /boot/cmdline.txt /boot/cmdline_backup.txt
-orig="$(head -n1 /boot/cmdline.txt) cgroup_enable=cpuset cgroup_enable=memory"
-echo $orig | sudo tee /boot/cmdline.txt
-
 # Add Repo List and Install KubeADM
 echo Installing KubeADM...
 curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key add - && \
@@ -43,6 +33,7 @@ do
     sudo chown $(id -u):$(id -g) $HOME/.kube/config
 
     #Verify Kubernetes Master Node Is Up and Running
+    echo 
     echo Verify Kubernetes Master Node Is Up and Running...
     kubectl get nodes
     
