@@ -1,7 +1,7 @@
-# Last Updated: 2/19/2019 - Built For Kubernetes v1.13.3
+# Last Updated: 2/21/2019 - Built For Raspberry Pi 3 B+ / Docker 18.06.0 / Kubernetes v1.13.3
 
 # Overview
-This is a project to help you create a Raspberry Pi cluster and demo DevOps practices from build/release to Chaos Engineering on it. According to a few friends, it's called a Raspberry Bush. Credit for the name goes to Antony Zimzores. Check out the companion blog article that goes into greater detail of thre build and process, [here](https://www.seanasaservice.com/blog/raspberry-bush). Altogether it cost around $850 and provided me with a lab with the following specs: 24 Cores @ 1.4GHz / 6GB RAM / 384GB Storage
+This is a project to help you create a Raspberry Pi 3B+ cluster and demo DevOps practices from build/release to Chaos Engineering on it. According to a few friends, it's been deemed a Raspberry Bush. Credit for the name goes to Antony Zimzores. Check out the companion blog article [here](https://www.seanasaservice.com/blog/raspberry-bush). Altogether, it costed around $850 and provided me with a lab with the following specs: 24 Cores @ 1.4GHz / 6GB RAM / 384GB Storage (Assuming a Master + 6 Slave Nodes)
 
 
 # Build Materials
@@ -29,13 +29,21 @@ There are two ways you can build this, I chose to go the Power over Ethernet (Po
   - Download the Raspbian Stretch Lite Image and and Extract the ISO
   - Flash To SD Card With Etcher
 
+# Node Setup
+## Toolbox Machine Node Setup (TBD If Will Be Combined With CC Node)
+Toolbox machine will house all of your tools that will get the work done, most of your pipeline tools and such will exist here. Most all of the desktop tools will be installed on this machine. Consider it the service server. To be continued....
+ - 
 
-# Command Central Setup
-Command central will be the standalone workstation from which everything is ran. This will also be where we run our DevOps and Choas jobs from as well. To be continued....
+## Command Central Node Setup
+Command Central will be the standalone workstation from which everything is ran. This will also be where we execute our DevOps and Chaos engineering consoles from as well. Consider it the desktop machine you would work from. To be continued...
+  -
 
-# Kubernetes Master Node Setup
+## Raspbian Kubernetes Node (Master / Slave) Setup
+For those who prefer Raspbian for thier Kube nodes. These machines will house the Kubernetes clusters, both master and slave, for use as a container platform to deploy our DevOps solutions.
   - First Login To the Raspberry Pi For The First Time With The Credentials: pi/raspberry
-  - Change Your Root Password!
+  - Change Your Root Password: <code> passwd </code>
+  - Configure Your Time Zone: </code> tzselect </code>
+  - Set Your Wifi Country: <code> iw reg set [Two Letter Country Code] </code>
   - (Optional) Turn on SSH: <code> sudo touch /boot/ssh </code>
   - Download the setup package by running the following command:
     - <code>curl -sSL https://raw.githubusercontent.com/imseandavis/Raspberry_Bush/master/setup.sh -o setup.sh</code>
@@ -46,8 +54,21 @@ Command central will be the standalone workstation from which everything is ran.
     - <code> sudo sh build_kub_node.sh</code>
     - This process will take between 10-12 minutes (will vary based on sd card speed).
 
+## Ubuntu Mate Kubernetes Node
+For those who prefer a desktop experience for thier Kube nodes. These machines will house the Kubernetes clusters, both master and slave, for use as a container platform to deploy our DevOps solutions.
+  - First Login To the Raspberry Pi For The First Time With The Credentials: pi/raspberry
+  - Change Your Root Password: <code> passwd </code>
+  - Configure Your Time Zone: </code> tzselect </code>
+  - Set Your Wifi Country: <code> iw reg set [Two Letter Country Code] </code>
+  - (Optional) Turn on SSH: <code> sudo touch /boot/ssh </code>
+  - Download the setup package by running the following command:
+    - <code>curl -sSL https://raw.githubusercontent.com/imseandavis/Raspberry_Bush/master/setup.sh -o setup.sh</code>
+  - Run the pi config script by running the following command:
+    - <code> sudo sh setup.sh [Hostname] [Desired IP] [Desired Gateway IP] [Desired DNS Server IP]</code>
+    - This process will take about 15 seconds (will vary based on sd card speed).
+  - After reboot, run the node setup script by running the following command:
+    - <code> sudo sh build_kub_node.sh</code>
+    - This process will take between 10-12 minutes (will vary based on sd card speed).
 
-# Other Housekeeping (Optional)
-2.	Setup Time Zone – Option 4, I2
-3.	Setup WiFi Country – Option 4, I4
-4.	Update Raspi Config – Option 8)
+## Windows IoT Core (For Native .NET Core Demo)
+If you are interested in standing up a single instance of Windows to deploy .NET Core apps natively to in order to compare performance or just because you want to, here's your build.
