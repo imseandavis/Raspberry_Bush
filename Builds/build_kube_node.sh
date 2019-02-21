@@ -40,6 +40,9 @@ do
     # Install Weave Network 
     kubectl apply -f "https://cloud.weave.works/k8s/net?k8s-version=$(kubectl version | base64 | tr -d '\n')"
     
+    # Install WebUI Dashboard
+    kubectl create -f https://raw.githubusercontent.com/kubernetes/dashboard/master/aio/deploy/recommended/kubernetes-dashboard.yaml
+    
     break;
     ;;
 	S)
