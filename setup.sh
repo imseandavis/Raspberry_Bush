@@ -26,7 +26,17 @@ static routers=$gateway
 static domain_name_servers=$dns
 EOT
 
-# Download Build Script
+# Disable Swap (Requires A Reboot To Take Effect)
+echo Disabling Swap...
+sudo dphys-swapfile swapoff && \
+sudo dphys-swapfile uninstall && \
+sudo update-rc.d dphys-swapfile remove
+echo Adding " cgroup_enable=cpuset cgroup_enable=memory" to /boot/cmdline.txt
+sudo cp /boot/cmdline.txt /boot/cmdline_backup.txt
+orig="$(head -n1 /boot/cmdline.txt) cgroup_enable=cpuset cgroup_enable=memory"
+echo $orig | sudo tee /boot/cmdline.txt
+
+# Download Kube Node Build Script
 echo Downloading Kube Node Build Script...
 curl -sSL https://raw.githubusercontent.com/imseandavis/Raspberry_Bush/master/build_kube_node.sh -o build_kube_node.sh
 
