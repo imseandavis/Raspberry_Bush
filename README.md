@@ -56,20 +56,11 @@ For those who prefer Raspbian for thier Kube nodes. These machines will house th
     - This process will take between 10-12 minutes (will vary based on sd card speed).
 
 ## Ubuntu Mate Kubernetes Node
-For those who prefer a desktop experience for thier Kube nodes. These machines will house the Kubernetes clusters, both master and slave, for use as a container platform to deploy our DevOps solutions.
-  - First Login To the Raspberry Pi For The First Time With The Credentials: pi/raspberry
-  - Change Your Root Password: <code> passwd </code>
-  - Configure Your Time Zone: </code> tzselect </code>
-  - Set Your Wifi Country: <code> iw reg set [Two Letter Country Code] </code>
-  - (Optional) Turn on SSH: <code> sudo touch /boot/ssh </code>
-  - Download the setup package by running the following command:
-    - <code>curl -sSL https://raw.githubusercontent.com/imseandavis/Raspberry_Bush/master/setup.sh -o setup.sh</code>
-  - Run the pi config script by running the following command:
-    - <code> sudo sh setup.sh [Hostname] [Desired IP] [Desired Gateway IP] [Desired DNS Server IP]</code>
-    - This process will take about 15 seconds (will vary based on sd card speed).
-  - After reboot, run the node setup script by running the following command:
-    - <code> sudo sh build_kub_node.sh</code>
-    - This process will take between 10-12 minutes (will vary based on sd card speed).
+Not working yet...
 
-## Windows IoT Core (For Native .NET Core Demo)
+## Windows Node (For Native .NET Core Demo)
 If you are interested in standing up a single instance of Windows to deploy .NET Core apps natively to in order to compare performance or just because you want to, here's your build.
+   - Download the tool to install Windows on pie [here](https://github.com/WOA-Project/WOA-Deployer-Rpi)
+   - Follow the instructions [here](https://github.com/WOA-Project/guides/blob/master/GettingWOA.md) to obtain a Windows on ARM WIM Image
+   - Install The Image Using The WOA Installer
+   - Profit!
