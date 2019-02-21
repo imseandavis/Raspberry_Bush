@@ -1,4 +1,5 @@
-# Last Updated: 2/21/2019 - Built For Raspberry Pi 3 B+ / Docker 18.06.0 / Kubernetes v1.13.3
+# Last Updated: 2/21/2019
+## Built For Raspberry Pi 3 B+ / Docker 18.06.0 / Kubernetes v1.13.3
 
 # Overview
 This is a project to help you create a Raspberry Pi 3B+ cluster and demo DevOps practices from build/release to Chaos Engineering on it. According to a few friends, it's been deemed a Raspberry Bush. Credit for the name goes to Antony Zimzores. Check out the companion blog article [here](https://www.seanasaservice.com/blog/raspberry-bush). Altogether, it costed around $850 and provided me with a lab with the following specs: 24 Cores @ 1.4GHz / 6GB RAM / 384GB Storage (Assuming a Master + 6 Slave Nodes)
