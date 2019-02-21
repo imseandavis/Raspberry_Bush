@@ -37,23 +37,28 @@ do
     echo Verify Kubernetes Master Node Is Up and Running...
     kubectl get nodes
     
+    # Install Weave Network 
+    kubectl apply -f "https://cloud.weave.works/k8s/net?k8s-version=$(kubectl version | base64 | tr -d '\n')"
+    
     break;
     ;;
 	S)
-    echo Configuring Kube Slave Node....
-    
-    # Update Kube Config
-    echo Join Kube Slave Node To Master...
-    
+
     # Init Variables
+    echo Configuring Kube Slave Node....
+    echo
     echo You will need your Kubernetes Master Host IP, Token and Hash to continue...
     echo
-    read Kube-Master-Host
-    read Kube-Master-Token
-    read Kube-Master-Hash
+    echo Enter Kubernetes Master Host IP Address:
+    read KubeMasterHostIP
+    echo Enter Kubernetes Master Host Token
+    read KubeMasterToken
+    echo Enter Kubernetes Master Host Hash
+    read KubeMasterHash
     
     # Join Kubernetes Cluster
-    sudo kubeadm join $Kube-Master-Host:6443 --token $Kube-Master-Token --discovery-token-ca-cert-hash $Kube-Master-Hash
+    echo Joining Slave Node To Master Host $KubernetesMasterHostIP...
+    sudo kubeadm join $KubeMasterHostIP:6443 --token $KubeMasterToken --discovery-token-ca-cert-hash $KubeMasterHash
 
     #Verify Master Is Up
     echo Verify Kubernetes Node Has Been Added Successful...
