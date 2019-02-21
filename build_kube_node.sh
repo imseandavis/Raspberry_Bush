@@ -44,7 +44,16 @@ do
     
     # Update Kube Config
     echo Join Kube Slave Node To Master...
-    sudo kubeadm join --token TOKEN 192.168.1.100:6443 --discovery-token-ca-cert-hash HASH
+    
+    # Init Variables
+    echo You will need your Kubernetes Master Host IP, Token and Hash to continue...
+    echo
+    read Kube-Master-Host
+    read Kube-Master-Token
+    read Kube-Master-Hash
+    
+    # Join Kubernetes Cluster
+    sudo kubeadm join $Kube-Master-Host:6443 --token $Kube-Master-Token --discovery-token-ca-cert-hash $Kube-Master-Hash
 
     #Verify Master Is Up
     echo Verify Kubernetes Node Has Been Added Successful...
