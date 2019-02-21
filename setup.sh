@@ -40,7 +40,7 @@ echo $orig | sudo tee /boot/cmdline.txt > /dev/null
 
 # Download Kube Node Build Script
 echo Downloading Kube Node Build Script...
-curl -sSL https://raw.githubusercontent.com/imseandavis/Raspberry_Bush/master/build_kube_node.sh -o build_kube_node.sh
+curl -sSL https://raw.githubusercontent.com/imseandavis/Raspberry_Bush/master/Builds/build_kube_node.sh -o build_kube_node.sh
 
 # Housekeeping
 echo Cleaning up....
