@@ -23,7 +23,7 @@ There are two ways you can build this, I chose to go the Power over Ethernet (Po
 
 # Prerequisite Software
   - Software To Burn SD Card Images - [Etcher.io]()
-  - SD Card Image - [Raspbian Stretch Lite]()
+  - SD Card Image - [Raspbian Lite](https://www.raspberrypi.org/downloads/raspbian/)
   
 
 # Image SD Card
