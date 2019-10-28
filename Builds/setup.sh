@@ -33,7 +33,7 @@ static domain_name_servers=$dns
 EOT
 
 # Update Hostname
-echo Setting Hostname...
+echo Setting Hostname to $hostname...
 sudo hostnamectl --transient set-hostname $hostname > /dev/null 2>&1
 sudo hostnamectl --static set-hostname $hostname > /dev/null 2>&1
 sudo hostnamectl --pretty set-hostname $hostname > /dev/null 2>&1
