@@ -12,8 +12,8 @@ echo "deb http://apt.kubernetes.io/ kubernetes-xenial main" | sudo tee /etc/apt/
 
 #Install & Upgrade All Packages - Have To Use APT-GET Due To Some Kubernetes Nuances
 echo Updating and Upgrading Packages...
-sudo apt-get update -q && \
-sudo apt-get upgrade -y
+sudo apt-get update -qy && \
+sudo apt-get upgrade -qy
 
 # Install KubeADM
 echo Installing KubeADM...
@@ -91,6 +91,6 @@ rm -f build_kube_node.sh
 #rm -f config_kube.sh
 
 # Reboot
-echo Rebooting in 10 seconds...
-sleep 10
+echo Rebooting in 5 seconds...
+sleep 5
 sudo reboot now
