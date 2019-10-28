@@ -10,12 +10,12 @@ DNS=$4 #IP Format xxx.xxx.xxx.xxx
 echo Turning on SSH...
 sudo touch /boot/ssh
 
-# Disable Swap (Requires A Reboot To Take Effect)
-echo Disabling Swap...
+# Disable & Eradicate Swap
+echo Disabling & Eridaicate Swap...
 sudo dphys-swapfile swapoff && \
 sudo dphys-swapfile uninstall && \
 sudo update-rc.d dphys-swapfile remove
-#sudo systemctl disable dphys-swapfile
+sudo systemctl disable dphys-swapfile
 
 # Disable IPV6 & Enable CGROUPS
 echo Disabling IPV6 and Enabling CGROUPS...
