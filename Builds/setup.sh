@@ -17,7 +17,7 @@ sudo systemctl disable dphys-swapfile > /dev/null 2>&1
 echo Disabling IPv6 and Enabling CGROUPS...
 sudo cp /boot/cmdline.txt /boot/cmdline_backup.txt
 orig="$(head -n1 /boot/cmdline.txt) ipv6.disable=1 cgroup_enable=cpuset cgroup_enable=memory cgroup_memory=1"
-echo $orig | sudo tee /boot/cmdline.txt > /dev/null
+echo $orig | sudo tee /boot/cmdline.txt > /dev/null 2>&1
 
 # Download Kube Node Build Script
 echo Downloading Kube Node Build Script...
@@ -34,10 +34,10 @@ EOT
 
 # Update Hostname
 echo Setting Hostname...
-sudo hostnamectl --transient set-hostname $hostname
-sudo hostnamectl --static set-hostname $hostname
-sudo hostnamectl --pretty set-hostname $hostname
-sudo sed -i s/raspberrypi/$hostname/g /etc/hosts
+sudo hostnamectl --transient set-hostname $hostname > /dev/null 2>&1
+sudo hostnamectl --static set-hostname $hostname > /dev/null 2>&1
+sudo hostnamectl --pretty set-hostname $hostname > /dev/null 2>&1
+sudo sed -i s/raspberrypi/$hostname/g /etc/hosts > /dev/null 2>&1
 
 # Housekeeping
 echo Cleaning up....
