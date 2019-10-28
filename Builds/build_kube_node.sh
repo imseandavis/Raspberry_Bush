@@ -2,7 +2,7 @@
 
 # Install Docker
 #echo Installing Docker...
-export VERSION=18.06.0 && \
+export VERSION=19.03.3 && \
 curl -sSL get.docker.com | sh && \
 sudo usermod -aG docker pi
 
