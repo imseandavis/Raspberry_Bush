@@ -1,8 +1,7 @@
 #!/bin/sh
 
 # Install Docker
-#echo Installing Docker...
-export VERSION=19.03.3 && \
+echo Installing Docker...
 curl -sSL get.docker.com | sh && \
 sudo usermod -aG docker pi
 
@@ -12,7 +11,7 @@ curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key add
 echo "deb http://apt.kubernetes.io/ kubernetes-xenial main" | sudo tee /etc/apt/sources.list.d/kubernetes.list
 
 #Install & Upgrade All Packages - Have To Use APT-GET Due To Some Kubernetes Nuances
-echo Update / Upgrade Packages...
+echo Updating and Upgrading Packages...
 sudo apt-get update -q && \
 sudo apt-get upgrade -y
 
@@ -30,6 +29,7 @@ do
     echo Configuring Kube Master Node....
     
     # Download Kubernetes Config Images
+    echo Downloading Kubernetes Config Images...
     sudo kubeadm config images pull
     
     # Init KubeAdm
