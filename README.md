@@ -49,9 +49,8 @@ These machines will house the Kubernetes clusters, both master and slave, for us
   - Configure Your Time Zone: </code> tzselect </code>
   - Set Your Wifi Country: <code> sudo iw reg set [Two Letter Country Code] </code>
   - (Optional) Turn on SSH: <code> sudo touch /boot/ssh </code>
-  - Download the setup package by running either of the following commands:
-    - Short URL: <code>curl -sSL https://tiny.cc/buildrb -o setup.sh</code>
-    - Long URL: <code>curl -sSL https://raw.githubusercontent.com/imseandavis/Raspberry_Bush/master/Builds/setup.sh -o setup.sh</code>
+  - Download the setup package by running the following command:
+    - <code>curl -sSL https://tiny.cc/buildrb -o setup.sh</code>
   - Run the pi config script by running the following command:
     - <code> sudo sh setup.sh [Hostname] [Desired IP] [Desired Gateway IP] [Desired DNS Server IP]</code>
     - This process will take about 15 seconds (will vary based on sd card speed).
