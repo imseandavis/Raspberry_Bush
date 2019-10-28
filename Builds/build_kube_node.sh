@@ -6,11 +6,18 @@ export VERSION=19.03.3 && \
 curl -sSL get.docker.com | sh && \
 sudo usermod -aG docker pi
 
-# Add Repo List and Install KubeADM
-echo Installing KubeADM...
+# Add Repo List
+echo Adding Kubernetes Repos...
 curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key add - && \
-echo "deb http://apt.kubernetes.io/ kubernetes-xenial main" | sudo tee /etc/apt/sources.list.d/kubernetes.list && \
+echo "deb http://apt.kubernetes.io/ kubernetes-xenial main" | sudo tee /etc/apt/sources.list.d/kubernetes.list
+
+#Install & Upgrade All Packages - Have To Use APT-GET Due To Some Kubernetes Nuances
+echo Update / Upgrade Packages...
 sudo apt-get update -q && \
+sudo apt-get upgrade -y
+
+# Install KubeADM
+echo Installing KubeADM...
 sudo apt-get install -qy kubeadm
 
 #Download Config Files
@@ -21,6 +28,9 @@ do
   case $INPUT_STRING in
 	M)
     echo Configuring Kube Master Node....
+    
+    # Download Kubernetes Config Images
+    sudo kubeadm config images pull
     
     # Init KubeAdm
     echo Init KubeAdm...
