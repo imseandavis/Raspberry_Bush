@@ -45,7 +45,7 @@ For those who prefer Raspbian for thier Kube nodes. These machines will house th
   - First Login To the Raspberry Pi For The First Time With The Credentials: pi/raspberry
   - Change Your Root Password: <code> passwd </code>
   - Configure Your Time Zone: </code> tzselect </code>
-  - Set Your Wifi Country: <code> iw reg set [Two Letter Country Code] </code>
+  - Set Your Wifi Country: <code> sudo iw reg set [Two Letter Country Code] </code>
   - (Optional) Turn on SSH: <code> sudo touch /boot/ssh </code>
   - Download the setup package by running the following command:
     - <code>curl -sSL https://raw.githubusercontent.com/imseandavis/Raspberry_Bush/master/Builds/setup.sh -o setup.sh</code>
