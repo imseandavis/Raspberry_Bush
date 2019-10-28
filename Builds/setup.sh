@@ -27,9 +27,9 @@ curl -sSL https://raw.githubusercontent.com/imseandavis/Raspberry_Bush/master/Bu
 echo Setting Static IP to: $ip ...
 sudo cat <<EOT >> /etc/dhcpcd.conf
 interface eth0
-static ip_address=$IP/24
-static routers=$Gateway
-static domain_name_servers=$DNS
+static ip_address=$ip/24
+static routers=$gateway
+static domain_name_servers=$dns
 EOT
 
 # Update Hostname
