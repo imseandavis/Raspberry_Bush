@@ -6,10 +6,6 @@ IP=$2 #IP Format: xxx.xxx.xxx.xxx
 Gateway=$3 #IP Format: xxx.xxx.xxx.xxx
 DNS=$4 #IP Format xxx.xxx.xxx.xxx
 
-# Turn on SSH
-echo Turning on SSH...
-sudo touch /boot/ssh
-
 # Disable & Eradicate Swap
 echo Disabling & Eridaicate Swap...
 sudo dphys-swapfile swapoff && \
