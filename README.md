@@ -29,7 +29,7 @@ There are two ways you can build this, I chose to go the Power over Ethernet (Po
 
 # Prerequisite Software
   - Software To Burn SD Card Images - [Etcher.io](https://www.balena.io/etcher/)
-  - SD Card Image - [Raspbian Buster Lite](https://www.raspberrypi.org/downloads/raspbian/) or [Raspbian Buster Lite Cached](https://raw.githubusercontent.com/imseandavis/Raspberry_Bush/master/Builds/ISO/2019-09-26-raspbian-buster-lite.img)
+  - SD Card Image - [Raspbian Buster Lite](https://www.raspberrypi.org/downloads/raspbian/)
 
 
 # Image SD Card
