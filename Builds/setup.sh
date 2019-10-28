@@ -2,19 +2,19 @@
 
 #Init Variables
 hostname=$1
-IP=$2 #IP Format: xxx.xxx.xxx.xxx
-Gateway=$3 #IP Format: xxx.xxx.xxx.xxx
-DNS=$4 #IP Format xxx.xxx.xxx.xxx
+ip=$2
+gateway=$3
+dns=$4
 
-# Disable & Eradicate Swap
-echo Disabling & Eridaicate Swap...
+# Disable Swap File
+echo Disabling Swap File...
 sudo dphys-swapfile swapoff && \
 sudo dphys-swapfile uninstall && \
-sudo update-rc.d dphys-swapfile remove
-sudo systemctl disable dphys-swapfile
+sudo update-rc.d dphys-swapfile remove && \
+sudo systemctl disable dphys-swapfile > /dev/null 2>&1
 
-# Disable IPV6 & Enable CGROUPS
-echo Disabling IPV6 and Enabling CGROUPS...
+# Disable IPv6 & Enable CGROUPS
+echo Disabling IPv6 and Enabling CGROUPS...
 sudo cp /boot/cmdline.txt /boot/cmdline_backup.txt
 orig="$(head -n1 /boot/cmdline.txt) ipv6.disable=1 cgroup_enable=cpuset cgroup_enable=memory cgroup_memory=1"
 echo $orig | sudo tee /boot/cmdline.txt > /dev/null
