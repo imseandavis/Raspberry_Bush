@@ -1,10 +1,37 @@
 #!/bin/sh
 
 #Init Variables
-hostname=$1
-ip=$2
-gateway=$3
-dns=$4
+version=$1
+hostname=$2
+ip=$3
+gateway=$4
+dns=$5
+
+# TODO: Check All Variables To Make Sure They Were Defined
+
+# Download Kube Node Build Script
+echo Downloading Kubernetes Build Script...
+while :
+do
+  read INPUT_STRING
+  case $INPUT_STRING in
+	k3s)
+    # Download k8s Build Script
+	curl -sSL https://raw.githubusercontent.com/imseandavis/Raspberry_Bush/master/Builds/K8S/build_kube_node.sh -o build_kube_node.sh
+    break;
+    ;;
+	
+	k8s)
+   
+    # Download k8s Build Script
+	curl -sSL https://raw.githubusercontent.com/imseandavis/Raspberry_Bush/master/Builds/K8S/build_kube_node.sh -o build_kube_node.sh
+    break;
+    ;;
+	*)
+    echo Please Select A Valid Kubernetes Version (k3s or k8s) And Try Again...
+    ;;
+  esac
+done
 
 # Disable Swap File
 echo Disabling Swap File...
@@ -27,10 +54,6 @@ echo Disabling IPv6 and Enabling CGROUPS...
 sudo cp /boot/cmdline.txt /boot/cmdline_backup.txt
 orig="$(head -n1 /boot/cmdline.txt) ipv6.disable=1 cgroup_enable=cpuset cgroup_enable=memory cgroup_memory=1"
 echo $orig | sudo tee /boot/cmdline.txt > /dev/null 2>&1
-
-# Download Kube Node Build Script
-echo Downloading Kube Node Build Script...
-curl -sSL https://raw.githubusercontent.com/imseandavis/Raspberry_Bush/master/Builds/build_kube_node.sh -o build_kube_node.sh
 
 # Set Static IP
 echo Setting Static IP to: $ip ...

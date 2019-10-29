@@ -1,18 +1,21 @@
 # Last Updated: 10/29/2019
 ## Built For Raspberry Pi (3/4)
 ## Software Builds:
- - Raspbian Buster Lite (Kernel 4.19)
- - Custom CPU Governor Plugin 1.0
- - Kubernetes 1.16.2
- - Docker-CE 19.03.4
- - Flannel 0.11.0
- - WebUI 2.0.0 Beta5
+ - k3s
+   - STUFF GOES HERE
+ - k8s
+   - Raspbian Buster Lite (Kernel 4.19)
+   - Custom CPU Governor Plugin 1.0
+   - Kubernetes 1.16.2
+   - Docker-CE 19.03.4
+   - Flannel 0.11.0
+   - WebUI 2.0.0 Beta5
 
 # Overview
 This is a project to help you create a Raspberry Pi cluster and demo DevOps practices from build/release to Chaos Engineering on it. According to a few friends, it's been deemed a Raspberry Bush. Credit for the name goes to Antony Zimzores. Check out the companion blog article [here](https://www.seanasaservice.com/blog/raspberry-bush). 
 
 # Cost
- - Raspberry Pi 3B+ based cluster will cost around $850 for an 8 node cluster with the following specs: 24 Cores @ 1.4GHz / 6GB RAM / 384GB Storage (This Assumes a Lab Desktop, Master Node, and 6 Slave Nodes)
+ - Raspberry Pi 3B+ based cluster will cost around $850 for an 8 node cluster with the following specs: 24 Cores @ 1.4GHz / 6GB RAM / 384GB Storage (This Assumes a Lab Desktop, Master Node, and 6 Slave Nodes). Network is limited to 300MB max throughput as it's bound to the same bus as the USB.
 
  - Raspberry Pi 4B (4GB) based cluster will cost around $1000 for an 8 node cluster with the following specs: 32 Core @ 1.5GHz / 32GB RAM / 384GB Storage (This Assumes a Lab Desktop, Master Node, and 6 Slave Nodes). If you need a bit more umph this build will also provide the benefit of a full 1GB network vs. 300MB of the Pi 3B+.
 
@@ -99,7 +102,7 @@ These machines will house the Kubernetes clusters, both master and slave, for us
   - Download the setup package by running the following command:
     - <code>curl -sSL https://tiny.cc/buildrb -o setup.sh</code>
   - Run the pi config script by running the following command:
-    - <code> sudo sh setup.sh [Hostname] [Desired IP] [Desired Gateway IP] [Desired DNS Server IP]</code>
+    - <code> sudo sh setup.sh [Version (k3s/k8s)] [Hostname] [Desired IP] [Desired Gateway IP] [Desired DNS Server IP]</code>
     - This process will take about 15 seconds (will vary based on sd card speed).
   - After reboot, run the node setup script by running the following command:
     - <code> sudo sh build_kub_node.sh</code>
@@ -115,5 +118,10 @@ If you are interested in standing up a single instance of Windows to deploy full
    - Install The Image Using The WOA Installer
    - Profit!
    
-## Performance
-COMING SOON.....
+## Performance Tests
+Raspberry Pi 4B Build Times
+  - Setup - 13 Seconds
+  - k3s Build - ????
+  - k8s Build - 8m 21s
+  
+MORE COMING SOON.....
