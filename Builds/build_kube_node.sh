@@ -32,9 +32,9 @@ do
     echo Init KubeAdm...
     sudo kubeadm init --token-ttl=0 --pod-network-cidr=10.244.0.0/16
             
-    # TODO: Secure admin.conf / kube.conf
+    # TODO: Copy admin.conf / Secure kube.conf
     
-    # TODO: SAVE TOKEN TO FILE
+    # TODO: Pull Token On Slave Node From Master Node
         
     # Make Kube Cluster Available
     echo Make Kube Cluster Available...
@@ -44,15 +44,15 @@ do
     
     #Install and Configure Network
     echo Installing Kubernetes Network...
+    sudo sysctl net.bridge.bridge-nf-call-iptables=1 > /dev/null
     kubectl apply -f https://raw.githubusercontent.com/coreos/flannel/master/Documentation/kube-flannel.yml
-    sysctl net.bridge.bridge-nf-call-iptables=1
     
     # Optional: Install WebUI Dashboard (Specific For Kub v1.16.x)
     echo Installing and Configuring WebUI Dashboard...
     kubectl apply -f https://raw.githubusercontent.com/kubernetes/dashboard/v2.0.0-beta5/aio/deploy/recommended.yaml
 
     #Verify Kubernetes Master Node Is Up and Running
-    echo 
+    
     echo Verify Kubernetes Master Node Is Up and Running...
     kubectl get nodes
 
@@ -79,8 +79,8 @@ do
     sudo kubeadm join $KubeMasterHostIP:6443 --token $KubeMasterToken --discovery-token-ca-cert-hash sha256:$KubeMasterHash
 
     #Verify Master Is Up
-    echo Verify Kubernetes Node Has Been Added Successful...
-    kubectl get nodes
+    echo Verify Kubernetes Node Has Been Added Successful (Will Try For Up To 10 Minutes)...
+    until kubectl get nodes | grep -E "Ready" -C 120; do sleep 5 | echo "Waiting For Node To Be Ready..."; done
     
     break;
     ;;
@@ -95,6 +95,6 @@ echo Doing A Little Housekeeping....
 rm -f build_kube_node.sh
 
 # Reboot
-echo Rebooting in 5 seconds...
-sleep 5
+echo Rebooting in 10 seconds...
+sleep 10
 sudo reboot now
