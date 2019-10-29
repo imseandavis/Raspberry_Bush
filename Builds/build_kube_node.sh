@@ -2,6 +2,7 @@
 
 # Install Docker
 echo Installing Docker...
+export VERSION=18.06.0 && \
 curl -sSL get.docker.com | sh && \
 sudo usermod -aG docker pi
 
@@ -11,13 +12,13 @@ curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key add
 echo "deb http://apt.kubernetes.io/ kubernetes-xenial main" | sudo tee /etc/apt/sources.list.d/kubernetes.list
 
 #Install & Upgrade All Packages - Have To Use APT-GET Due To Some Kubernetes Nuances
-echo Updating and Upgrading Packages...
-sudo apt-get update -qy && \
-sudo apt-get upgrade -qy
+#echo Updating and Upgrading Packages...
+#sudo apt-get update -qqy && \
+#sudo apt-get upgrade -qqy
 
 # Install KubeADM
 echo Installing KubeADM...
-sudo apt-get install -qy kubeadm
+sudo apt-get install -qqy kubeadm
 
 #Download Config Files
 echo "Pick A Role To Install: (M)aster Node or (S)lave Node"
@@ -35,9 +36,11 @@ do
     # Init KubeAdm
     echo Init KubeAdm...
     sudo kubeadm init
-
-    # Start Kube Cluster
-    echo Start Kube Cluster...
+            
+    #TODO: SAVE TOKEN TO FILE
+        
+    # Make Kube Cluster Available
+    echo Make Kube Cluster Available...
     mkdir -p $HOME/.kube
     sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
     sudo chown $(id -u):$(id -g) $HOME/.kube/config
@@ -48,13 +51,16 @@ do
     kubectl get nodes
     
     # Install Weave Network 
+    sudo sysctl net.bridge.bridge-nf-call-iptables=1 > /dev/null
     kubectl apply -f "https://cloud.weave.works/k8s/net?k8s-version=$(kubectl version | base64 | tr -d '\n')"
     
     # Install WebUI Dashboard
-    kubectl create -f https://raw.githubusercontent.com/kubernetes/dashboard/master/aio/deploy/recommended/kubernetes-dashboard.yaml
-    
+    kubectl apply -f https://raw.githubusercontent.com/kubernetes/dashboard/v1.10.1/src/deploy/recommended/kubernetes-dashboard.yaml
+
+    #End Master Node Configuration
     break;
     ;;
+	
 	S)
 
     # Init Variables
@@ -71,7 +77,7 @@ do
     
     # Join Kubernetes Cluster
     echo Joining Slave Node To Master Host $KubernetesMasterHostIP...
-    sudo kubeadm join $KubeMasterHostIP:6443 --token $KubeMasterToken --discovery-token-ca-cert-hash $KubeMasterHash
+    sudo kubeadm join $KubeMasterHostIP:6443 --token $KubeMasterToken --discovery-token-ca-cert-hash sha256:$KubeMasterHash
 
     #Verify Master Is Up
     echo Verify Kubernetes Node Has Been Added Successful...
