@@ -19,7 +19,7 @@ sudo systemctl disable raspi-config > /dev/null 2>&1
 
 # Set Governor To Performance
 echo  Set CPU Governor To Performance...
-wget https://raw.githubusercontent.com/DavidM42/rpi-cpu.gov/master/install.sh > /dev/null 2>&1 && sudo chmod +x ./install.sh > /dev/null 2>&1 && sudo ./install.sh --nochown > /dev/null 2>&1 && sudo rm install.sh > /dev/null 2>&1
+sudo wget -q https://raw.githubusercontent.com/DavidM42/rpi-cpu.gov/master/install.sh && sudo ./install.sh > /dev/null 2>&1 && sudo rm install.sh > /dev/null 2>&1
 cpu.gov -g performance > /dev/null
 
 # Disable IPv6 & Enable CGROUPS
