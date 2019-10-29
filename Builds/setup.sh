@@ -16,6 +16,7 @@ sudo systemctl disable dphys-swapfile > /dev/null 2>&1
 #Disable Raspi-Config & OnDemand CPU Governor
 echo Disabling Raspberry Pi Config Tool And Removing CPU Governor...
 sudo systemctl disable raspi-config > /dev/null 2>&1
+sudo sh -c "cd /sys/devices/system/cpu; echo performance > cpu0/cpufreq/scaling_governor"
 
 # Disable IPv6 & Enable CGROUPS
 echo Disabling IPv6 and Enabling CGROUPS...
