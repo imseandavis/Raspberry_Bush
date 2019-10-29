@@ -13,10 +13,14 @@ sudo dphys-swapfile uninstall && \
 sudo update-rc.d dphys-swapfile remove && \
 sudo systemctl disable dphys-swapfile > /dev/null 2>&1
 
-#Disable Raspi-Config & OnDemand CPU Governor
-echo Disabling Raspberry Pi Config Tool, Remove CPU Governor and Set To Performance...
+#Disable Raspi-Config
+echo Disabling Raspberry Pi Config Tool...
 sudo systemctl disable raspi-config > /dev/null 2>&1
-sudo sh -c "cd /sys/devices/system/cpu; echo performance > cpu0/cpufreq/scaling_governor"
+
+# Set Governor To Performance
+echo  Set CPU Governor To Performance...
+wget https://raw.githubusercontent.com/DavidM42/rpi-cpu.gov/master/install.sh > /dev/null && sudo chmod +x ./install.sh > /dev/null && sudo ./install.sh --nochown > /dev/null && sudo rm install.sh > /dev/null
+cpu.gov -g performance > /dev/null
 
 # Disable IPv6 & Enable CGROUPS
 echo Disabling IPv6 and Enabling CGROUPS...
