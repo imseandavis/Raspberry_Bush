@@ -10,7 +10,6 @@ dns=$5
 # TODO: Check All Variables To Make Sure They Were Defined
 
 # Download Kube Node Build Script
-echo Downloading Kubernetes Build Script...
 while :
 do
   read INPUT_STRING
@@ -19,7 +18,7 @@ do
     
 	# Download k8s Build Script
 	echo Downloading k3s Build Script...
-	curl -sSL https://raw.githubusercontent.com/imseandavis/Raspberry_Bush/master/Builds/K8S/build_kube_node.sh -o build_kube_node.sh
+	curl -sSL https://raw.githubusercontent.com/imseandavis/Raspberry_Bush/master/Builds/k3s/build_kube_node.sh -o build_kube_node.sh
     
 	break;
     ;;
@@ -28,7 +27,7 @@ do
    
     # Download k8s Build Script
 	echo Downloading k3s Build Script...
-	curl -sSL https://raw.githubusercontent.com/imseandavis/Raspberry_Bush/master/Builds/K8S/build_kube_node.sh -o build_kube_node.sh
+	curl -sSL https://raw.githubusercontent.com/imseandavis/Raspberry_Bush/master/Builds/k8s/build_kube_node.sh -o build_kube_node.sh
     
 	break;
     ;;
