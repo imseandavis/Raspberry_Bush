@@ -46,4 +46,4 @@ rm -f setup.sh
 # Reboot
 echo Rebooting in 5 seconds...
 sleep 5
-reboot now
+sudo reboot now
