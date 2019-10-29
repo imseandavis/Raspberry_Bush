@@ -16,17 +16,23 @@ do
   read INPUT_STRING
   case $INPUT_STRING in
 	k3s)
-    # Download k8s Build Script
+    
+	# Download k8s Build Script
+	echo Downloading k3s Build Script...
 	curl -sSL https://raw.githubusercontent.com/imseandavis/Raspberry_Bush/master/Builds/K8S/build_kube_node.sh -o build_kube_node.sh
-    break;
+    
+	break;
     ;;
 	
 	k8s)
    
     # Download k8s Build Script
+	echo Downloading k3s Build Script...
 	curl -sSL https://raw.githubusercontent.com/imseandavis/Raspberry_Bush/master/Builds/K8S/build_kube_node.sh -o build_kube_node.sh
-    break;
+    
+	break;
     ;;
+	
 	*)
     echo Please Select A Valid Kubernetes Version (k3s or k8s) And Try Again...
     ;;
