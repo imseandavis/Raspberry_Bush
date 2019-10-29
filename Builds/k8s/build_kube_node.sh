@@ -27,22 +27,22 @@ do
   case $INPUT_STRING in
 	M)
     echo Configuring Kube Master Node....
-    
+
     # Init KubeAdm, Set Token To Not Expire, and Use Flannel Pod Network For Add On
     echo Init KubeAdm, Set Token To Not Expire, and Use Flannel Pod Network For Add On...
     sudo kubeadm init --token-ttl=0 --pod-network-cidr=10.244.0.0/16
-            
+
     # Make Kube Cluster Available
     echo Make Kube Cluster Available...
     mkdir -p $HOME/.kube
     sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
     sudo chown $(id -u):$(id -g) $HOME/.kube/config
-    
+
     # Install and Configure Network
     echo Installing Kubernetes Network...
     sudo sysctl net.bridge.bridge-nf-call-iptables=1 > /dev/null
     kubectl apply -f https://raw.githubusercontent.com/coreos/flannel/master/Documentation/kube-flannel.yml
-    
+
     # Install WebUI Dashboard (Specific For Kub v1.16.x)
     echo Installing and Configuring WebUI Dashboard...
     kubectl apply -f https://raw.githubusercontent.com/kubernetes/dashboard/v2.0.0-beta5/aio/deploy/recommended.yaml
@@ -50,20 +50,15 @@ do
     # Verify Master Node Is Up & Ready
     echo Verify Kubernetes Master Node Is Up and Ready...
     until kubectl get nodes | grep -E "Ready" -C 120; do sleep 5 | echo "Waiting For Node To Be Ready..."; done
-    
-    # Write Token and SHA Hash To File
-    echo Writing Token and Hash To File...
-    kubeadm token list > token.txt
-    openssl x509 -pubkey -in /etc/kubernetes/pki/ca.crt | openssl rsa -pubin -outform der 2>/dev/null | openssl dgst -sha256 -hex | sed 's/^.* //' > hash.txt
 
     # Download Master Node Post Install Tasks
     echo Downloading Post Install Task Script...
     curl -sSL https://raw.githubusercontent.com/imseandavis/Raspberry_Bush/master/Builds/k3s/master_post_install_tasks.sh -o post_install_tasks.sh
-    
+
     #End Master Node Configuration
     break;
     ;;
-	
+
 	W)
    
     # Init Variables
@@ -73,12 +68,12 @@ do
     echo
     echo Enter Kubernetes Master Host IP Address:
     read KubeMasterHostIP
-        
+
     #TODO: FIX RETRIEVAL CODE
     echo Retrieving Token and Hash...
     KubeMasterToken=$(sudo ssh pi@$KubeMasterHostIP kubeadm token list | awk 'NR==2{print $1}')
     KubeMasterHash=$(sudo ssh pi@$KubeMasterHostIP "openssl x509 -pubkey -in /etc/kubernetes/pki/ca.crt | openssl rsa -pubin -outform der 2>/dev/null | openssl dgst -sha256 -hex | sed 's/^.* //'")
-    
+
     # Join Kubernetes Cluster
     echo Joining Worker Node To Master Host $KubMasterHostIP...
     sudo kubeadm join $KubeMasterHostIP:6443 --token $KubeMasterToken --discovery-token-ca-cert-hash sha256:$KubeMasterHash
@@ -89,11 +84,11 @@ do
     until sudo ssh pi@$KubeMasterHostIP kubectl get nodes | awk 'NR==2{print $2}' | grep -E "Ready" -C 120; do sleep 5 | echo "Waiting For Node To Be Ready..."; done
     #Check Worker 1 Node
     until sudo ssh pi@$KubeMasterHostIP kubectl get nodes | awk 'NR==3{print $2}' | grep -E "Ready" -C 120; do sleep 5 | echo "Waiting For Node To Be Ready..."; done
-    
+
     # Download Slave Node Post Install Tasks
     echo Downloading Post Install Tasks Script...
     curl -sSL https://raw.githubusercontent.com/imseandavis/Raspberry_Bush/master/Builds/k3s/worker_post_install_tasks.sh -o post_install_tasks.sh
-    
+
     break;
     ;;
 	*)
