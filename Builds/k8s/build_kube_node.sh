@@ -10,7 +10,7 @@ echo Adding Kubernetes Repos...
 curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key add - && \
 echo "deb http://apt.kubernetes.io/ kubernetes-xenial main" | sudo tee /etc/apt/sources.list.d/kubernetes.list > /dev/null
 
-#Install & Upgrade All Packages - Have To Use APT-GET Due To Some Kubernetes Nuances
+#Install & Upgrade All Packages
 echo Updating and Upgrading Packages...
 sudo apt update -qqy && \
 sudo apt upgrade -qqy
