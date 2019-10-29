@@ -13,7 +13,7 @@ echo "deb http://apt.kubernetes.io/ kubernetes-xenial main" | sudo tee /etc/apt/
 
 #Install & Upgrade All Packages - Have To Use APT-GET Due To Some Kubernetes Nuances
 echo Updating and Upgrading Packages...
-sudo apt update -qqy
+sudo apt update -qqy && \
 sudo apt upgrade -qqy
 
 # Install KubeADM
@@ -29,15 +29,13 @@ do
 	M)
     echo Configuring Kube Master Node....
     
-    # Download Kubernetes Config Images
-    echo Downloading Kubernetes Config Images...
-    sudo kubeadm config images pull
-    
     # Init KubeAdm
     echo Init KubeAdm...
     sudo kubeadm init
             
-    #TODO: SAVE TOKEN TO FILE
+    # TODO: Secure admin.conf / kube.conf
+    
+    # TODO: SAVE TOKEN TO FILE
         
     # Make Kube Cluster Available
     echo Make Kube Cluster Available...
@@ -50,11 +48,14 @@ do
     echo Verify Kubernetes Master Node Is Up and Running...
     kubectl get nodes
     
-    # Install Weave Network 
+    #Install and Configure Network
+    echo Installing and Configuring Network...
     sudo sysctl net.bridge.bridge-nf-call-iptables=1 > /dev/null
-    kubectl apply -f "https://cloud.weave.works/k8s/net?k8s-version=$(kubectl version | base64 | tr -d '\n')"
+    kubectl apply -f https://raw.githubusercontent.com/coreos/flannel/bc79dd1505b0c8681ece4de4c0d86c5cd2643275/Documentation/kube-flannel.yml
     
     # Install WebUI Dashboard
+    echo Installing and Configuring WebUI Dashboard
+    # TODO Configure WebUI
     kubectl apply -f https://raw.githubusercontent.com/kubernetes/dashboard/v1.10.1/src/deploy/recommended/kubernetes-dashboard.yaml
 
     #End Master Node Configuration
@@ -94,7 +95,6 @@ done
 # Housekeeping
 echo Doing A Little Housekeeping....
 rm -f build_kube_node.sh
-#rm -f config_kube.sh
 
 # Reboot
 echo Rebooting in 5 seconds...
