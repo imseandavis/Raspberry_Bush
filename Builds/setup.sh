@@ -13,6 +13,10 @@ sudo dphys-swapfile uninstall && \
 sudo update-rc.d dphys-swapfile remove && \
 sudo systemctl disable dphys-swapfile > /dev/null 2>&1
 
+#Disable Raspi-Config & OnDemand CPU Governor
+echo Disabling Raspberry Pi Config Tool And Removing CPU Governor...
+sudo systemctl disable raspi-config
+
 # Disable IPv6 & Enable CGROUPS
 echo Disabling IPv6 and Enabling CGROUPS...
 sudo cp /boot/cmdline.txt /boot/cmdline_backup.txt
