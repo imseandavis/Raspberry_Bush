@@ -12,7 +12,8 @@ dns=$5
 # Download Kube Node Build Script
 while :
 do
-  case $version in
+  case $pi
+  version in
 	k3s)
     
 	# Download k8s Build Script
@@ -25,7 +26,7 @@ do
 	k8s)
    
     # Download k8s Build Script
-	echo Downloading k3s Build Script...
+	echo Downloading k8s Build Script...
 	curl -sSL https://raw.githubusercontent.com/imseandavis/Raspberry_Bush/master/Builds/k8s/build_kube_node.sh -o build_kube_node.sh
     
 	break;
