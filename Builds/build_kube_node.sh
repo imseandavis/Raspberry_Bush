@@ -31,7 +31,7 @@ do
     
     # Init KubeAdm
     echo Init KubeAdm...
-    sudo kubeadm init
+    sudo kubeadm init --pod-network-cidr=10.244.0.0/16
             
     # TODO: Secure admin.conf / kube.conf
     
@@ -49,9 +49,8 @@ do
     kubectl get nodes
     
     #Install and Configure Network
-    echo Installing and Configuring Network...
-    sudo sysctl net.bridge.bridge-nf-call-iptables=1 > /dev/null
-    kubectl apply -f https://raw.githubusercontent.com/coreos/flannel/bc79dd1505b0c8681ece4de4c0d86c5cd2643275/Documentation/kube-flannel.yml
+    echo Installing Kubernetes Network...
+    kubectl apply -f https://raw.githubusercontent.com/coreos/flannel/master/Documentation/kube-flannel.yml
     
     # Install WebUI Dashboard
     echo Installing and Configuring WebUI Dashboard
