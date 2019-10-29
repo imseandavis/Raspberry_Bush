@@ -34,7 +34,7 @@ do
     ;;
 	
 	*)
-    echo Please Select A Valid Kubernetes Version (k3s or k8s) And Try Again...
+	echo Please Select A Valid Kubernetes Version And Try Again...
     ;;
   esac
 done
