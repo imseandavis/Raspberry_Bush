@@ -82,7 +82,10 @@ do
     #Verify All Nodes Are Up & Ready
     #TODO: FIX FOR ALL NODES
     echo Verify All Kubernetes Nodes Are Up and Ready...
-    until kubectl get nodes | grep -E "Ready" -C 120; do sleep 5 | echo "Waiting For Node To Be Ready..."; done
+    #Check Master Node
+    until sudo ssh pi@$KubeMasterHostIP kubectl get nodes | awk 'NR==2{print $2}' | grep -E "Ready" -C 120; do sleep 5 | echo "Waiting For Node To Be Ready..."; done
+    #Check Worker 1 Node
+    until sudo ssh pi@$KubeMasterHostIP kubectl get nodes | awk 'NR==3{print $2}' | grep -E "Ready" -C 120; do sleep 5 | echo "Waiting For Node To Be Ready..."; done
     
     # TODO: Copy admin.conf / Secure kube.conf
 
