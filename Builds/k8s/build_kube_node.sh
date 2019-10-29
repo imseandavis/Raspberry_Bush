@@ -53,7 +53,7 @@ do
 
     # Download Master Node Post Install Tasks
     echo Downloading Post Install Task Script...
-    curl -sSL https://raw.githubusercontent.com/imseandavis/Raspberry_Bush/master/Builds/k3s/master_post_install_tasks.sh -o post_install_tasks.sh
+    curl -sSL https://raw.githubusercontent.com/imseandavis/Raspberry_Bush/master/Builds/k8s/master_post_install_tasks.sh -o post_install_tasks.sh
 
     #End Master Node Configuration
     break;
@@ -87,7 +87,7 @@ do
 
     # Download Slave Node Post Install Tasks
     echo Downloading Post Install Tasks Script...
-    curl -sSL https://raw.githubusercontent.com/imseandavis/Raspberry_Bush/master/Builds/k3s/worker_post_install_tasks.sh -o post_install_tasks.sh
+    curl -sSL https://raw.githubusercontent.com/imseandavis/Raspberry_Bush/master/Builds/k8s/worker_post_install_tasks.sh -o post_install_tasks.sh
 
     break;
     ;;
