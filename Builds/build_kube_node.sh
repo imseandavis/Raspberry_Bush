@@ -51,10 +51,9 @@ do
     echo Installing and Configuring WebUI Dashboard...
     kubectl apply -f https://raw.githubusercontent.com/kubernetes/dashboard/v2.0.0-beta5/aio/deploy/recommended.yaml
 
-    #Verify Kubernetes Master Node Is Up and Running
-    
-    echo Verify Kubernetes Master Node Is Up and Running...
-    kubectl get nodes
+    #Verify Master Node Is Up & Ready
+    echo Verify Kubernetes Master Node Is Up and Ready (Will Try For Up To 10 Minutes)...
+    until kubectl get nodes | grep -E "Ready" -C 120; do sleep 5 | echo "Waiting For Node To Be Ready..."; done
 
     #End Master Node Configuration
     break;
@@ -78,10 +77,11 @@ do
     echo Joining Slave Node To Master Host $KubernetesMasterHostIP...
     sudo kubeadm join $KubeMasterHostIP:6443 --token $KubeMasterToken --discovery-token-ca-cert-hash sha256:$KubeMasterHash
 
-    #Verify Master Is Up
-    echo Verify Kubernetes Node Has Been Added Successful (Will Try For Up To 10 Minutes)...
-    until kubectl get nodes | grep -E "Ready" -C 120; do sleep 5 | echo "Waiting For Node To Be Ready..."; done
-    
+    #Verify All Nodes Are Up & Ready
+    #TODO: FIX FOR ALL NODES
+    echo Verify All Kubernetes Nodes Are Up and Ready (Will Try For Up To 10 Minutes)...
+    until kubectl get nodes | grep -E "Ready" -C 120; do sleep 5 | echo "Waiting For All Nodes To Be Ready..."; done
+
     break;
     ;;
 	*)
