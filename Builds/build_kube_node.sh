@@ -32,26 +32,22 @@ do
     echo Init KubeAdm...
     sudo kubeadm init --token-ttl=0 --pod-network-cidr=10.244.0.0/16
             
-    # TODO: Copy admin.conf / Secure kube.conf
-    
-    # TODO: Pull Token On Slave Node From Master Node
-        
     # Make Kube Cluster Available
     echo Make Kube Cluster Available...
     mkdir -p $HOME/.kube
     sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
     sudo chown $(id -u):$(id -g) $HOME/.kube/config
     
-    #Install and Configure Network
+    # Install and Configure Network
     echo Installing Kubernetes Network...
     sudo sysctl net.bridge.bridge-nf-call-iptables=1 > /dev/null
     kubectl apply -f https://raw.githubusercontent.com/coreos/flannel/master/Documentation/kube-flannel.yml
     
-    # Optional: Install WebUI Dashboard (Specific For Kub v1.16.x)
+    # Install WebUI Dashboard (Specific For Kub v1.16.x)
     echo Installing and Configuring WebUI Dashboard...
     kubectl apply -f https://raw.githubusercontent.com/kubernetes/dashboard/v2.0.0-beta5/aio/deploy/recommended.yaml
 
-    #Verify Master Node Is Up & Ready
+    # Verify Master Node Is Up & Ready
     echo Verify Kubernetes Master Node Is Up and Ready (Will Try For Up To 10 Minutes)...
     until kubectl get nodes | grep -E "Ready" -C 120; do sleep 5 | echo "Waiting For Node To Be Ready..."; done
 
@@ -81,6 +77,9 @@ do
     #TODO: FIX FOR ALL NODES
     echo Verify All Kubernetes Nodes Are Up and Ready (Will Try For Up To 10 Minutes)...
     until kubectl get nodes | grep -E "Ready" -C 120; do sleep 5 | echo "Waiting For All Nodes To Be Ready..."; done
+
+    # TODO: Copy admin.conf / Secure kube.conf
+    # TODO: Pull Token On Slave Node From Master Node
 
     break;
     ;;
