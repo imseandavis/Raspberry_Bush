@@ -12,8 +12,7 @@ dns=$5
 # Download Kube Node Build Script
 while :
 do
-  case $pi
-  version in
+  case $version in
 	k3s)
     
 	# Download k8s Build Script
