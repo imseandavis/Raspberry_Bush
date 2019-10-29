@@ -1,6 +1,6 @@
 # Last Updated: 2/21/2019
 ## Built For Raspberry Pi (3/4)
-## Software Builds: Raspbian Buster Lite (Kernal 4.19) / Kubernetes 1.15.0 / Docker-CE 19.03.3
+## Software Builds: Raspbian Buster Lite (Kernal 4.19) / Kubernetes 1.16.2 / Docker-CE 19.03.4
 
 # Overview
 This is a project to help you create a Raspberry Pi cluster and demo DevOps practices from build/release to Chaos Engineering on it. According to a few friends, it's been deemed a Raspberry Bush. Credit for the name goes to Antony Zimzores. Check out the companion blog article [here](https://www.seanasaservice.com/blog/raspberry-bush). Altogether, it cost around $850 for an 8 node cluster and provided me with a lab with the following specs: 24 Cores @ 1.4GHz / 6GB RAM / 384GB Storage (Assuming a Lab Desktop and Master Node + 6 Slave Nodes) (Raspberry Pi 3b+ Version). The cost and specs varies slightly with the version 4 Pi's as you could go as high as 32 Core @ 1.5GHz / 3GB RAM if you need a bit more umph and 4's will provide the benefit of full 1GB network vs. 300MB of the Pi 3B+. We'll break this down in future version of this project. 
@@ -9,12 +9,32 @@ This is a project to help you create a Raspberry Pi cluster and demo DevOps prac
 # Build Materials
 There are two ways you can build this, I chose to go the Power over Ethernet (PoE) route as the switch I chose provided me with and additional two 1GB uplink ports (whihc my chosen switch) and gave me the ability to consolidate the need for power into a single connection to the Pi. When I did the cost analysis, the additional price of the PoE Hats + PoE Switch was only around $100 difference so it didn't make sense not to go with the cleaner look, less cables, one less power supply, and 2 additional network ports. Feel free to use whatever switch you like as long as it doesnt exceed the INTERIOR dimensions of the case your using. Luckily I pulled spec sheets on all switches considered and found a fair compromise of what I wanted and kept things tidy and simple. I did wish that had gone with 128GB cards but those cards get expensive when your buying 8, your wallets milage may vary. I highly reccomend the SanDisk Extreme Pro models as the performance is great and has the best perf/dollar ratio.
   
+<details>
+<summary>Raspberry Pi 3B+ Builds</summary>
+<p>
+
+#### Minimum
+  -Single Node
+   - 1x [Raspberry PI 3B+]()
+   - 1x [Raspberry Pi 3B+ Power Supply]()
+   - 1x [SD Card - Minimum 16GB]()
+   
+#### Recommended
+  -Single Node
+   - 1x [Raspberry Pi 4B]()
+   - 1x [Raspberry Pi 4B Power Supply]()
+   - 1x [SD Card - Minimum 64GB]()
+
+</p>
+</details>
+  
+  
   -Minimum Single Node Required
    - 1x [Raspberry PI 3B+]() or [Raspberry Pi 4B]()
    - 1x [Raspberry Pi 3B+ Power Supply]() or [Raspberry Pi 4B Power Supply]()
    - 1x [SD Card - Minimum 16GB]()
 
-  - Cluster Required
+  - Pi3 Cluster Required
     - 8x [CanaKit Raspberry Pi 3 B+](https://www.canakit.com/raspberry-pi-3-model-b-plus.html) ($35/ea.)
     - 8x [CanaKit Raspberry Pi PoE Hat](https://www.canakit.com/raspberry-pi-poe-hat.html) ($20/ea.)
     - 8x [SanDisk Extreme Pro 64GB Micro SD Card](https://www.bestbuy.com/site/sandisk-extreme-plus-64gb-microsdxc-uhs-i-memory-card/6282920.p?skuId=6282920) ($34.99/ea.)
