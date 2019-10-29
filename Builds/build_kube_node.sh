@@ -42,20 +42,19 @@ do
     mkdir -p $HOME/.kube
     sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
     sudo chown $(id -u):$(id -g) $HOME/.kube/config
-
-    #Verify Kubernetes Master Node Is Up and Running
-    echo 
-    echo Verify Kubernetes Master Node Is Up and Running...
-    kubectl get nodes
     
     #Install and Configure Network
     echo Installing Kubernetes Network...
     kubectl apply -f https://raw.githubusercontent.com/coreos/flannel/master/Documentation/kube-flannel.yml
     
-    # Install WebUI Dashboard
-    echo Installing and Configuring WebUI Dashboard
-    # TODO Configure WebUI
-    kubectl apply -f https://raw.githubusercontent.com/kubernetes/dashboard/v1.10.1/src/deploy/recommended/kubernetes-dashboard.yaml
+    # Install WebUI Dashboard (For Kub v1.16.x)
+    echo Installing and Configuring WebUI Dashboard...
+    kubectl apply -f https://raw.githubusercontent.com/kubernetes/dashboard/v2.0.0-beta5/aio/deploy/recommended.yaml
+
+    #Verify Kubernetes Master Node Is Up and Running
+    echo 
+    echo Verify Kubernetes Master Node Is Up and Running...
+    kubectl get nodes
 
     #End Master Node Configuration
     break;
