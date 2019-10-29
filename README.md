@@ -1,6 +1,12 @@
 # Last Updated: 10/29/2019
 ## Built For Raspberry Pi (3/4)
-## Software Builds: Raspbian Buster Lite (Kernal 4.19) / Kubernetes 1.16.2 / Docker-CE 19.03.4
+## Software Builds:
+ - Raspbian Buster Lite (Kernel 4.19)
+ - Custom CPU Governor Plugin 1.0
+ - Kubernetes 1.16.2
+ - Docker-CE 19.03.4
+ - Flannel 0.11.0
+ - WebUI 2.0.0 Beta5
 
 # Overview
 This is a project to help you create a Raspberry Pi cluster and demo DevOps practices from build/release to Chaos Engineering on it. According to a few friends, it's been deemed a Raspberry Bush. Credit for the name goes to Antony Zimzores. Check out the companion blog article [here](https://www.seanasaservice.com/blog/raspberry-bush). Altogether, it cost around $850 for an 8 node cluster and provided me with a lab with the following specs: 24 Cores @ 1.4GHz / 6GB RAM / 384GB Storage (Assuming a Lab Desktop and Master Node + 6 Slave Nodes) (Raspberry Pi 3b+ Version). The cost and specs varies slightly with the version 4 Pi's as you could go as high as 32 Core @ 1.5GHz / 3GB RAM if you need a bit more umph and 4's will provide the benefit of full 1GB network vs. 300MB of the Pi 3B+. We'll break this down in future version of this project. 
