@@ -49,8 +49,7 @@ do
 
     # Verify Master Node Is Up & Ready
     echo Verify Kubernetes Master Node Is Up and Ready (Will Try For Up To 10 Minutes)...
-    until kubectl get nodes | grep -E "Ready" -C 120; do sleep 5 | echo "Waiting For Node To Be Ready..."; done
-
+    
     #End Master Node Configuration
     break;
     ;;
@@ -76,8 +75,7 @@ do
     #Verify All Nodes Are Up & Ready
     #TODO: FIX FOR ALL NODES
     echo Verify All Kubernetes Nodes Are Up and Ready (Will Try For Up To 10 Minutes)...
-    until kubectl get nodes | grep -E "Ready" -C 120; do sleep 5 | echo "Waiting For All Nodes To Be Ready..."; done
-
+    
     # TODO: Copy admin.conf / Secure kube.conf
     # TODO: Pull Token On Slave Node From Master Node
 
