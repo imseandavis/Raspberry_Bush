@@ -13,4 +13,4 @@ kubectl get pods --all-namespaces
 kubectl get nodes
 
 # Cleanup Remaining Files
-rm -f master_post_install_tasks.sh
+rm -f post_install_tasks.sh
