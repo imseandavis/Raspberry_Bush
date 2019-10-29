@@ -30,7 +30,7 @@ do
     
     # Init KubeAdm
     echo Init KubeAdm...
-    sudo kubeadm init --pod-network-cidr=10.244.0.0/16
+    sudo kubeadm init --token-ttl=0 --pod-network-cidr=10.244.0.0/16
             
     # TODO: Secure admin.conf / kube.conf
     
@@ -45,8 +45,9 @@ do
     #Install and Configure Network
     echo Installing Kubernetes Network...
     kubectl apply -f https://raw.githubusercontent.com/coreos/flannel/master/Documentation/kube-flannel.yml
+    sysctl net.bridge.bridge-nf-call-iptables=1
     
-    # Install WebUI Dashboard (For Kub v1.16.x)
+    # Optional: Install WebUI Dashboard (Specific For Kub v1.16.x)
     echo Installing and Configuring WebUI Dashboard...
     kubectl apply -f https://raw.githubusercontent.com/kubernetes/dashboard/v2.0.0-beta5/aio/deploy/recommended.yaml
 
