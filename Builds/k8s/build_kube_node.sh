@@ -20,7 +20,7 @@ echo Installing KubeADM...
 sudo apt install -qqy kubeadm
 
 #Download Config Files
-echo "Pick A Role To Install: (M)aster Node or (S)lave Node"
+echo "Pick A Role To Install: (M)aster Node or (W)orker Node"
 while :
 do
   read INPUT_STRING
@@ -56,14 +56,18 @@ do
     kubeadm token list > token.txt
     openssl x509 -pubkey -in /etc/kubernetes/pki/ca.crt | openssl rsa -pubin -outform der 2>/dev/null | openssl dgst -sha256 -hex | sed 's/^.* //' > hash.txt
 
+    # Download Master Node Post Install Tasks
+    echo Downloading Post Install Task Script...
+    curl -sSL https://raw.githubusercontent.com/imseandavis/Raspberry_Bush/master/Builds/k3s/master_post_install_tasks.sh -o post_install_tasks.sh
+    
     #End Master Node Configuration
     break;
     ;;
 	
-	S)
+	W)
    
     # Init Variables
-    echo Configuring Kube Slave Node....
+    echo Configuring Kube Worker Node....
     echo
     echo You will need your Kubernetes Master Host IP, Token and Hash to continue...
     echo
@@ -76,19 +80,20 @@ do
     KubeMasterHash=$(sudo ssh pi@$KubeMasterHostIP "openssl x509 -pubkey -in /etc/kubernetes/pki/ca.crt | openssl rsa -pubin -outform der 2>/dev/null | openssl dgst -sha256 -hex | sed 's/^.* //'")
     
     # Join Kubernetes Cluster
-    echo Joining Slave Node To Master Host $KubMasterHostIP...
+    echo Joining Worker Node To Master Host $KubMasterHostIP...
     sudo kubeadm join $KubeMasterHostIP:6443 --token $KubeMasterToken --discovery-token-ca-cert-hash sha256:$KubeMasterHash
 
     #Verify All Nodes Are Up & Ready
-    #TODO: FIX FOR ALL NODES
     echo Verify All Kubernetes Nodes Are Up and Ready...
     #Check Master Node
     until sudo ssh pi@$KubeMasterHostIP kubectl get nodes | awk 'NR==2{print $2}' | grep -E "Ready" -C 120; do sleep 5 | echo "Waiting For Node To Be Ready..."; done
     #Check Worker 1 Node
     until sudo ssh pi@$KubeMasterHostIP kubectl get nodes | awk 'NR==3{print $2}' | grep -E "Ready" -C 120; do sleep 5 | echo "Waiting For Node To Be Ready..."; done
     
-    # TODO: Copy admin.conf / Secure kube.conf
-
+    # Download Slave Node Post Install Tasks
+    echo Downloading Post Install Tasks Script...
+    curl -sSL https://raw.githubusercontent.com/imseandavis/Raspberry_Bush/master/Builds/k3s/worker_post_install_tasks.sh -o post_install_tasks.sh
+    
     break;
     ;;
 	*)
