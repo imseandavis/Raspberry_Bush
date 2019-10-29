@@ -72,7 +72,7 @@ do
         
     #TODO: FIX RETRIEVAL CODE
     echo Retrieving Token and Hash...
-    KubeMasterToken=$(sudo ssh pi@$KubeMasterHostIP "kubeadm token list | awk 'NR==2{print $1}'")
+    KubeMasterToken=$(sudo ssh pi@$KubeMasterHostIP kubeadm token list | awk 'NR==2{print $1}')
     KubeMasterHash=$(sudo ssh pi@$KubeMasterHostIP "openssl x509 -pubkey -in /etc/kubernetes/pki/ca.crt | openssl rsa -pubin -outform der 2>/dev/null | openssl dgst -sha256 -hex | sed 's/^.* //'")
     
     # Join Kubernetes Cluster
