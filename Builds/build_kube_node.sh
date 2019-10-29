@@ -17,7 +17,7 @@ sudo apt upgrade -qqy
 
 # Install KubeADM
 echo Installing KubeADM...
-sudo apt-get install -qqy kubeadm
+sudo apt install -qqy kubeadm
 
 #Download Config Files
 echo "Pick A Role To Install: (M)aster Node or (S)lave Node"
@@ -72,8 +72,8 @@ do
         
     #TODO: FIX RETRIEVAL CODE
     echo Retrieving Token and Hash...
-    KubeMasterToken = echo yes | sudo ssh pi@KubMasterHostIP 'kubeadm token list'
-    KubeMasterHash = echo yes | sudo ssh pi@KubMasterHostIP "openssl x509 -pubkey -in /etc/kubernetes/pki/ca.crt | openssl rsa -pubin -outform der 2>/dev/null | openssl dgst -sha256 -hex | sed 's/^.* //'"
+    KubeMasterToken=$(sudo ssh pi@$KubeMasterHostIP "kubeadm token list | awk 'NR==2{print $1}'")
+    KubeMasterHash=$(sudo ssh pi@$KubeMasterHostIP "openssl x509 -pubkey -in /etc/kubernetes/pki/ca.crt | openssl rsa -pubin -outform der 2>/dev/null | openssl dgst -sha256 -hex | sed 's/^.* //'")
     
     # Join Kubernetes Cluster
     echo Joining Slave Node To Master Host $KubMasterHostIP...
