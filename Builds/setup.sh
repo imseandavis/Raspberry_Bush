@@ -2,10 +2,11 @@
 
 #Init Variables
 version=$1
-hostname=$2
-ip=$3
-gateway=$4
-dns=$5
+nodetype=$2
+hostname=$3
+ip=$4
+gateway=$5
+dns=$6
 
 # TODO: Check All Variables To Make Sure They Were Defined
 
@@ -28,6 +29,32 @@ do
 	echo Downloading k8s Build Script...
 	curl -sSL https://raw.githubusercontent.com/imseandavis/Raspberry_Bush/master/Builds/k8s/build_kube_node.sh -o build_kube_node.sh
     
+	break;
+    ;;
+	
+	*)
+	echo Please Select A Valid Kubernetes Version And Try Again...
+    ;;
+  esac
+done
+
+# Set Node Type Flag
+while :
+do
+  case $nodeversion in
+	M)
+    
+	# Download k8s Build Script
+	echo Set Master Build Flag...
+	sudo touch master
+	break;
+    ;;
+	
+	W)
+   
+    # Download k8s Build Script
+	echo Set Worker Build Flag...
+        sudo touch worker
 	break;
     ;;
 	
