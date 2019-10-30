@@ -86,6 +86,10 @@ sudo cp /boot/cmdline.txt /boot/cmdline_backup.txt
 orig="$(head -n1 /boot/cmdline.txt) ipv6.disable=1 cgroup_enable=cpuset cgroup_enable=memory cgroup_memory=1"
 echo $orig | sudo tee /boot/cmdline.txt > /dev/null 2>&1
 
+# Set GPU Memory Split to 16MB
+echo Set GPU Memory Split to 16MB...
+sudo sed -i "s/\(gpu_mem *= *\).*/\116/" /boot/config.txt
+
 # Set Static IP
 echo Setting Static IP to: $ip ...
 sudo cat <<EOT >> /etc/dhcpcd.conf
