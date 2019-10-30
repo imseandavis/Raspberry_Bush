@@ -96,8 +96,8 @@ Desktop Node will be the standalone workstation (in your cluster) from which eve
 These machines will house the Kubernetes clusters, both master and slave, for use as a container platform to deploy our DevOps solutions and test projects.
   - First Login To the Raspberry Pi For The First Time With The Credentials: pi/raspberry
   - Change Your Root Password: <code> passwd </code>
-  - Configure Your Time Zone: <code> tzselect </code>
-  - Set Your Wifi Country: <code> sudo iw reg set [Two Letter Country Code] </code>
+  - (Optional) Configure Your Time Zone: <code> tzselect </code>
+  - (Optional) Set Your Wifi Country: <code> sudo iw reg set [Two Letter Country Code] </code>
   - (Optional) Turn on SSH: <code> sudo touch /boot/ssh && sudo service ssh start</code>
   - Download the setup package by running the following command:
     - <code>curl -sSL https://tiny.cc/buildrb -o setup.sh</code>
