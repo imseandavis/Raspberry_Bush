@@ -19,83 +19,68 @@ sudo apt upgrade -qqy
 echo Installing KubeADM...
 sudo apt install -qqy kubeadm
 
-#Download Config Files
-echo "Pick A Role To Install: (M)aster Node or (W)orker Node"
-while :
-do
-  read INPUT_STRING
-  case $INPUT_STRING in
-	M)
-    echo Configuring Kube Master Node....
+#Build Node
+ if [ -f "master" ]
+   then 
+     # Init KubeAdm, Set Token To Not Expire, and Use Flannel Pod Network For Add On
+     echo Init KubeAdm, Set Token To Not Expire, and Use Flannel Pod Network For Add On...
+     sudo kubeadm init --token-ttl=0 --pod-network-cidr=10.244.0.0/16
 
-    # Init KubeAdm, Set Token To Not Expire, and Use Flannel Pod Network For Add On
-    echo Init KubeAdm, Set Token To Not Expire, and Use Flannel Pod Network For Add On...
-    sudo kubeadm init --token-ttl=0 --pod-network-cidr=10.244.0.0/16
+     # Make Kube Cluster Available
+     echo Make Kube Cluster Available...
+     mkdir -p $HOME/.kube
+     sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
+     sudo chown $(id -u):$(id -g) $HOME/.kube/config
 
-    # Make Kube Cluster Available
-    echo Make Kube Cluster Available...
-    mkdir -p $HOME/.kube
-    sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
-    sudo chown $(id -u):$(id -g) $HOME/.kube/config
+     # Install and Configure Network
+     echo Installing Kubernetes Network...
+     sudo sysctl net.bridge.bridge-nf-call-iptables=1 > /dev/null
+     kubectl apply -f https://raw.githubusercontent.com/coreos/flannel/master/Documentation/kube-flannel.yml
 
-    # Install and Configure Network
-    echo Installing Kubernetes Network...
-    sudo sysctl net.bridge.bridge-nf-call-iptables=1 > /dev/null
-    kubectl apply -f https://raw.githubusercontent.com/coreos/flannel/master/Documentation/kube-flannel.yml
+     # Install WebUI Dashboard (Specific For Kub v1.16.x)
+     echo Installing and Configuring WebUI Dashboard...
+     kubectl apply -f https://raw.githubusercontent.com/kubernetes/dashboard/v2.0.0-beta5/aio/deploy/recommended.yaml
 
-    # Install WebUI Dashboard (Specific For Kub v1.16.x)
-    echo Installing and Configuring WebUI Dashboard...
-    kubectl apply -f https://raw.githubusercontent.com/kubernetes/dashboard/v2.0.0-beta5/aio/deploy/recommended.yaml
+     # Verify Master Node Is Up & Ready
+     echo Verify Kubernetes Master Node Is Up and Ready...
+     until kubectl get nodes | grep -E "Ready" -C 120; do sleep 5 | echo "Waiting For Node To Be Ready..."; done
 
-    # Verify Master Node Is Up & Ready
-    echo Verify Kubernetes Master Node Is Up and Ready...
-    until kubectl get nodes | grep -E "Ready" -C 120; do sleep 5 | echo "Waiting For Node To Be Ready..."; done
+     # Download Master Node Post Install Tasks
+     echo Downloading Post Install Task Script...
+     curl -sSL https://raw.githubusercontent.com/imseandavis/Raspberry_Bush/master/Builds/k8s/master_post_install_tasks.sh -o post_install_tasks.sh
 
-    # Download Master Node Post Install Tasks
-    echo Downloading Post Install Task Script...
-    curl -sSL https://raw.githubusercontent.com/imseandavis/Raspberry_Bush/master/Builds/k8s/master_post_install_tasks.sh -o post_install_tasks.sh
+ elif [ -f "worker" ]
+   then
+     # Init Variables
+     echo Configuring Kube Worker Node....
+     echo
+     echo You will need your Kubernetes Master Host IP and Login Information...
+     echo
+     echo Enter Kubernetes Master Host IP Address:
+     read KubeMasterHostIP
 
-    #End Master Node Configuration
-    break;
-    ;;
+     # Retrieve Token and Hash From Master Node
+     echo Retrieving Token and Hash...
+     KubeMasterToken=$(sudo ssh pi@$KubeMasterHostIP kubeadm token list | awk 'NR==2{print $1}')
+     KubeMasterHash=$(sudo ssh pi@$KubeMasterHostIP "openssl x509 -pubkey -in /etc/kubernetes/pki/ca.crt | openssl rsa -pubin -outform der 2>/dev/null | openssl dgst -sha256 -hex | sed 's/^.* //'")
 
-	W)
-   
-    # Init Variables
-    echo Configuring Kube Worker Node....
-    echo
-    echo You will need your Kubernetes Master Host IP, Token and Hash to continue...
-    echo
-    echo Enter Kubernetes Master Host IP Address:
-    read KubeMasterHostIP
+     # Join Kubernetes Cluster
+     echo Joining Worker Node To Master Host $KubMasterHostIP...
+     sudo kubeadm join $KubeMasterHostIP:6443 --token $KubeMasterToken --discovery-token-ca-cert-hash sha256:$KubeMasterHash
 
-    #TODO: FIX RETRIEVAL CODE
-    echo Retrieving Token and Hash...
-    KubeMasterToken=$(sudo ssh pi@$KubeMasterHostIP kubeadm token list | awk 'NR==2{print $1}')
-    KubeMasterHash=$(sudo ssh pi@$KubeMasterHostIP "openssl x509 -pubkey -in /etc/kubernetes/pki/ca.crt | openssl rsa -pubin -outform der 2>/dev/null | openssl dgst -sha256 -hex | sed 's/^.* //'")
+     # Verify All Nodes Are Up & Ready
+     echo Verify All Kubernetes Nodes Are Up and Ready...
+     # Check Master Node
+     until sudo ssh pi@$KubeMasterHostIP kubectl get nodes | awk 'NR==2{print $2}' | grep -E "Ready" -C 120; do sleep 5 | echo "Waiting For Node To Be Ready..."; done
+     # Check Worker 1 Node
+     until sudo ssh pi@$KubeMasterHostIP kubectl get nodes | awk 'NR==3{print $2}' | grep -E "Ready" -C 120; do sleep 5 | echo "Waiting For Node To Be Ready..."; done
 
-    # Join Kubernetes Cluster
-    echo Joining Worker Node To Master Host $KubMasterHostIP...
-    sudo kubeadm join $KubeMasterHostIP:6443 --token $KubeMasterToken --discovery-token-ca-cert-hash sha256:$KubeMasterHash
+     # Download Slave Node Post Install Tasks
+     echo Downloading Post Install Tasks Script...
+     curl -sSL https://raw.githubusercontent.com/imseandavis/Raspberry_Bush/master/Builds/k8s/worker_post_install_tasks.sh -o post_install_tasks.sh
 
-    #Verify All Nodes Are Up & Ready
-    echo Verify All Kubernetes Nodes Are Up and Ready...
-    #Check Master Node
-    until sudo ssh pi@$KubeMasterHostIP kubectl get nodes | awk 'NR==2{print $2}' | grep -E "Ready" -C 120; do sleep 5 | echo "Waiting For Node To Be Ready..."; done
-    #Check Worker 1 Node
-    until sudo ssh pi@$KubeMasterHostIP kubectl get nodes | awk 'NR==3{print $2}' | grep -E "Ready" -C 120; do sleep 5 | echo "Waiting For Node To Be Ready..."; done
-
-    # Download Slave Node Post Install Tasks
-    echo Downloading Post Install Tasks Script...
-    curl -sSL https://raw.githubusercontent.com/imseandavis/Raspberry_Bush/master/Builds/k8s/worker_post_install_tasks.sh -o post_install_tasks.sh
-
-    break;
-    ;;
-	*)
-    echo Please Select A Valid Role...
-    ;;
-  esac
-done
+ else echo "No Build Flag Found, Aborting Build!";
+ fi
 
 # Housekeeping
 echo Doing A Little Housekeeping....
