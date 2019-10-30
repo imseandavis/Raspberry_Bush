@@ -28,9 +28,9 @@ sudo apt install -qqy kubeadm
 
      # Make Kube Cluster Available
      echo Make Kube Cluster Available...
-     echo 'mkdir -p $HOME/.kube' | sh
-     echo 'sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config' | sh
-     echo 'sudo chown $(id -u):$(id -g) $HOME/.kube/config' | sh
+     mkdir -p $HOME/.kube
+     sudo cp -f /etc/kubernetes/admin.conf $HOME/.kube/config
+     sudo chown $(id -u):$(id -g) $HOME/.kube/config
 
      # Install and Configure Network
      echo Installing Kubernetes Network...
