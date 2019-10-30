@@ -2,7 +2,8 @@
 ## Built For Raspberry Pi (3/4)
 ## Software Builds:
  - k3s
-   - STUFF GOES HERE
+   - k3s Service 0.10.1
+   - Kubernetes 1.16.2
  - k8s
    - Raspbian Buster Lite (Kernel 4.19)
    - Custom CPU Governor Plugin 1.0
