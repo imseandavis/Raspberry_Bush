@@ -102,7 +102,7 @@ These machines will house the Kubernetes clusters, both master and slave, for us
   - Download the setup package by running the following command:
     - <code>curl -sSL https://tiny.cc/buildrb -o setup.sh</code>
   - Run the pi config script by running the following command:
-    - <code> sudo sh setup.sh [Version (k3s/k8s)] [Hostname] [Desired IP] [Desired Gateway IP] [Desired DNS Server IP]</code>
+    - <code> sudo sh setup.sh [Version (k3s/k8s)] [Node Type (Master/Worker)] [Hostname] [Desired IP] [Desired Gateway IP] [Desired DNS Server IP]</code>
     - This process will take about 15 seconds (will vary based on sd card speed).
   - After reboot, run the node setup script by running the following command:
     - <code> sudo sh build_kub_node.sh</code>
