@@ -90,7 +90,7 @@ There are two ways you can build this, I chose to go the Power over Ethernet (Po
 
 
 ## Desktop Node Setup
-Desktop Node will be the standalone workstation (in your cluster) from which everything is ran and learned. This will also be where we execute our DevOps and Chaos engineering consoles from as well. We'll also install all our tools on here as well. Consider it the desktop machine you would work from and where you'll install all your tools you'll learn from will reside. To be continued...
+Desktop Node will be the standalone workstation (in your cluster) from which everything is ran and learned. This will also be where we execute our DevOps and Chaos engineering consoles from as well. We'll also install all our tools on here as well. Consider it the desktop machine you would work from and where you'll install all your tools you'll learn from will reside. Thinking Ubuntu Mate Maybe??? To be continued...
   -
 
 ## Raspbian Kubernetes Node (Master / Slave) Setup
@@ -110,16 +110,6 @@ These machines will house the Kubernetes clusters, both master and slave, for us
     - <code> sudo sh build_kub_node.sh</code>
     - This process will take between 10-15 minutes (will vary based on sd card speed).
 
-## Ubuntu Mate Kubernetes Node
-Not working yet...
-
-## Windows Node (Why? Because I Can - Only for RPI 4, RPI3 is super buggy and insanely slow.)
-If you are interested in standing up a single instance of Windows to deploy full .NET Core apps natively to in order to compare performance or just because you want to, here's your build. Otherwise goe with .net core and stick yo linux.
-   - Download the tool to install Windows on pie [here](https://github.com/WOA-Project/WOA-Deployer-Rpi)
-   - Follow the instructions [here](https://github.com/WOA-Project/guides/blob/master/GettingWOA.md) to obtain a Windows on ARM WIM Image
-   - Install The Image Using The WOA Installer
-   - Profit!
-   
 ## Performance Tests
 Raspberry Pi 4B Build Times
   - Setup - 13 Seconds
