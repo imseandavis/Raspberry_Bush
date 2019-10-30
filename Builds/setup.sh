@@ -42,7 +42,7 @@ done
 while :
 do
   case $nodeversion in
-	M)
+	master,Master)
     
 	# Download k8s Build Script
 	echo Set Master Build Flag...
@@ -50,7 +50,7 @@ do
 	break;
     ;;
 	
-	W)
+	worker,Worker)
    
     # Download k8s Build Script
 	echo Set Worker Build Flag...
