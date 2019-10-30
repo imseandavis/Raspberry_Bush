@@ -41,7 +41,7 @@ done
 # Set Node Type Flag
 while :
 do
-  case $nodeversion in
+  case $nodetype in
 	[Mm]aster)
     
 	# Download k8s Build Script
