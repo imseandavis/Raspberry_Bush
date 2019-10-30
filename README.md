@@ -103,10 +103,10 @@ These machines will house the Kubernetes clusters, both master and slave, for us
     - <code>curl -sSL https://tiny.cc/buildrb -o setup.sh</code>
   - Run the pi config script by running the following command:
     - <code> sudo sh setup.sh [Version (k3s/k8s)] [Node Type (Master/Worker)] [Hostname] [Desired IP] [Desired Gateway IP] [Desired DNS Server IP]</code>
-    - This process will take about 15 seconds (will vary based on sd card speed).
+    - This process will take about 15 seconds.
   - After reboot, run the node setup script by running the following command:
     - <code> sudo sh build_kub_node.sh</code>
-    - This process will take between 10-12 minutes (will vary based on sd card speed).
+    - This process will take between 10-15 minutes (will vary based on sd card speed).
 
 ## Ubuntu Mate Kubernetes Node
 Not working yet...
