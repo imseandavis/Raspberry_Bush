@@ -86,9 +86,13 @@ There are two ways you can build this, I chose to go the Power over Ethernet (Po
      - 1x [YuanLey Smart PoE Switch](https://www.amazon.com/gp/product/B07H8YN9C3) ($59.99)
      - 1x [C4 Labs Raspberry Pi Cluster Enclosure – Black Ice](https://www.c4labs.com/product/8-slot-stackable-cluster-case-raspberry-pi-3b-and-other-single-board-computers-color-options/) ($46.99)
 
-    - Optional Non PoE Build (Won't be able to use the same case)
-      - 1x [Anker 60W 10 Port USB](https://www.amazon.com/Anker-10-Port-Charger-PowerPort-iPhone/dp/B00YRYS4T4) ($39.99)
-      - 8x [Micro USB Cables](https://www.amazon.com/Sabrent-6-Pack-Premium-Cables-CB-UM61/dp/B011KMSNXM) ($7.99)
+   - Optional Non PoE Build (Won't be able to use the same case)
+     - 1x [Anker 60W 10 Port USB](https://www.amazon.com/Anker-10-Port-Charger-PowerPort-iPhone/dp/B00YRYS4T4) ($39.99)
+     - 8x [Micro USB Cables](https://www.amazon.com/Sabrent-6-Pack-Premium-Cables-CB-UM61/dp/B011KMSNXM) ($7.99)
+      
+   - Optional Screen
+     - 1x [3.5 Pi Case + Screen](https://www.amazon.com/Raspberry-320x480-Monitor-Raspbian-RetroPie/dp/B07N38B86S/)
+      
 </p>
 </details>
 
@@ -132,3 +136,6 @@ Raspberry Pi 4B Build Times
 
 ## DevOps Tools
 MORE COMING SOON.....
+
+## What's Next???
+For more Pi fun, this time try Pizza Pi, write your first app to deploy and automate pizza orders from Dominos. Get started here: https://github.com/gamagori/pizzapi
