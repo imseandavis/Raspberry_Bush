@@ -128,7 +128,7 @@ These machines will house the Kubernetes clusters, both master and slave, for us
 Raspberry Pi 4B Build Times
   - Setup - 13 Seconds
   - k3s Build - ????
-  - k8s Build - 8m 21s
+  - k8s Build - 13m 42s
 
 ## DevOps Tools
 MORE COMING SOON.....
