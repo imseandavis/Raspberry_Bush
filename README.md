@@ -60,9 +60,10 @@ There are two ways you can build this, I chose to go the Power over Ethernet (Po
 
 
 <details>
-<summary>Cluster Builds</summary>
+<summary>Bill of Materials</summary>
 <p>
-#### Pi 3B+ Cluster Bill of Materials
+ 
+#### Pi 3B+ Cluster
    - Pi3 Cluster
      - 8x [CanaKit Raspberry Pi 3 B+](https://www.canakit.com/raspberry-pi-3-model-b-plus.html) ($35/ea.)
      - 8x [CanaKit Raspberry Pi PoE Hat](https://www.canakit.com/raspberry-pi-poe-hat.html) ($20/ea.)
@@ -75,7 +76,7 @@ There are two ways you can build this, I chose to go the Power over Ethernet (Po
      - 1x [Anker 60W 10 Port USB](https://www.amazon.com/Anker-10-Port-Charger-PowerPort-iPhone/dp/B00YRYS4T4) ($39.99)
      - 8x [Micro USB Cables](https://www.amazon.com/Sabrent-6-Pack-Premium-Cables-CB-UM61/dp/B011KMSNXM) ($7.99)
 
-#### Pi 4B Cluster Bill of Materials
+#### Pi 4B Cluster
    - Pi4 Cluster 
      - 8x [Raspberry Pi 4B (4GB)]()
      - 8x [Raspberry Pi 4B Power Supply]()
