@@ -10,6 +10,9 @@ dns=$6
 
 # TODO: Check All Variables To Make Sure They Were Defined
 
+#Turn On SSH
+sudo touch /boot/ssh
+
 # Download Kube Node Build Script
 while :
 do
