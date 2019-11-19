@@ -16,7 +16,6 @@
 
  elif [ -f "worker" ]
    then
-     
      # Build Exports To Join A Worker
      echo Configuring Kube Worker Node....
      echo
@@ -27,10 +26,12 @@
      echo
      echo Retrieving Kubernetes Master Join Token
      export K3S_URL="https://$KubeMasterHostIP:6443"
-     export K3S_TOKEN=$(sudo ssh pi@$KubeMasterHostIP sudo cat /var/lib/rancher/k3s/server/node-token)
+     export K3S_TOKEN=$(sudo ssh -o "StrictHostKeyChecking no" pi@$KubeMasterHostIP sudo cat /var/lib/rancher/k3s/server/node-token)
      
      #Checking k3s Node Status's On Server
-     sudo ssh pi@$KubeMasterHostIP sudo kubectl get node -o wide
+     echo 
+     echo Sleeping for 5 Seconds, Then Checking The New Node Status
+     sudo ssh pi@$KubeMasterHostIP sleep 5; sudo kubectl get node -o wide
 
  else echo "No Build Flag Found, Aborting Build!";
  fi
