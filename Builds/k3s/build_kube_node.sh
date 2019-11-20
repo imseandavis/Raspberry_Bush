@@ -32,7 +32,7 @@
      
      # Install k3s
      echo
-     echo "Installing k3s...";
+     echo "Installing k3s and joining to master node...";
      curl -sfL https://get.k3s.io | sh -
      
      #Checking k3s Node Status's On Server
