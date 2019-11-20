@@ -28,16 +28,17 @@
      echo
      echo Retrieving Kubernetes Master Join Token
      KubeMasterURL="https://$KubeMasterHostIP:6443"
-     KubeMasterJoinKey=$(sudo ssh -o "StrictHostKeyChecking no" pi@$KubeMasterHostIP sudo cat /var/lib/rancher/k3s/server/node-token)
+     KubeMasterJoinKey=$(sudo cat /var/lib/rancher/k3s/server/node-token)
      export K3S_URL=$KubeMasterURL
      export K3S_TOKEN=$KubeMasterJoinKey
      
      # Install k3s
      echo
      echo "Installing k3s and joining to master..." 
-     echo "Master URL: $KubeMasterURL"
-     echo "key: $KubeMasterJoinKey";
      curl -sfL https://get.k3s.io | sh -
+     echo
+     echo "Joining To Master..."
+     sudo k3s agent --server $KubeMasterURL --token $KubeMasterJoinKey
      
      #Checking k3s Node Status's On Server
      echo 
