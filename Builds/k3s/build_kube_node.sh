@@ -28,7 +28,7 @@
      echo
      echo Retrieving Kubernetes Master Join Token
      KubeMasterURL="https://$KubeMasterHostIP:6443"
-     KubeMasterJoinKey=$(sudo cat /var/lib/rancher/k3s/server/node-token)
+     KubeMasterJoinKey=$(sudo ssh -o "StrictHostKeyChecking no" pi@$KubeMasterHostIP sudo cat /var/lib/rancher/k3s/server/node-token)
      export K3S_URL=$KubeMasterURL
      export K3S_TOKEN=$KubeMasterJoinKey
      
@@ -50,9 +50,9 @@
 
 # Housekeeping
 #echo Doing A Little Housekeeping....
-rm -f build_kube_node.sh
+#rm -f build_kube_node.sh
 
 # Reboot
-echo Rebooting in 10 seconds...
-sleep 10
-sudo reboot now
+#echo Rebooting in 10 seconds...
+#sleep 10
+#sudo reboot now
