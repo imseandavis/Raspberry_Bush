@@ -4,13 +4,15 @@
  if [ -f "master" ]
    then 
      # Install k3s
+     echo 
+     echo "Installing k3s...";
      curl -sfL https://get.k3s.io | sh -
 
      # Check k3s Status
      sudo systemctl status k3s
 
      # Get Master Node Join Key
-     echo "";
+     echo 
      echo "Master Join String - Keep This Somewhere Safe";
      sudo cat /var/lib/rancher/k3s/server/node-token
 
@@ -18,7 +20,7 @@
    then
      # Build Exports To Join A Worker
      echo Configuring Kube Worker Node....
-     echo
+     echo 
      echo You will need your Kubernetes Master Host IP...
      echo
      echo Enter Kubernetes Master Host IP Address:
@@ -27,6 +29,11 @@
      echo Retrieving Kubernetes Master Join Token
      export K3S_URL="https://$KubeMasterHostIP:6443"
      export K3S_TOKEN=$(sudo ssh -o "StrictHostKeyChecking no" pi@$KubeMasterHostIP sudo cat /var/lib/rancher/k3s/server/node-token)
+     
+     # Install k3s
+     echo
+     echo "Installing k3s...";
+     curl -sfL https://get.k3s.io | sh -
      
      #Checking k3s Node Status's On Server
      echo 
