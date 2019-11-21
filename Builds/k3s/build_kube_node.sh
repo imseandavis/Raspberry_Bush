@@ -8,10 +8,6 @@
      echo "Installing k3s...";
      curl -sfL https://get.k3s.io | sh -
 
-     # Check k3s Status
-     echo 
-     sudo systemctl status k3s
-
      # Get Master Node Join Key
      echo 
      echo "Master Join String - Keep This Somewhere Safe";
@@ -37,11 +33,6 @@
      echo
      echo "Installing k3s and joining to master..." 
      curl -sfL https://get.k3s.io | sh -
-     
-     # Check k3s Status
-     echo 
-     echo "Checking Agent Status..."
-     sudo systemctl status k3s-agent
      
      #Checking k3s Node Status's On Server
      echo 
