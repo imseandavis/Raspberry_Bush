@@ -46,8 +46,3 @@
 # Housekeeping
 #echo Doing A Little Housekeeping....
 rm -f build_kube_node.sh
-
-# Reboot
-echo Rebooting in 5 seconds...
-sleep 5
-sudo reboot now
