@@ -38,6 +38,7 @@
      echo 
      echo Checking The New Node Status...
      echo
+     sleep 10;
      sudo ssh pi@$KubeMasterHostIP sudo kubectl get node -o wide
 
  else echo "No Build Flag Found, Aborting Build!";
