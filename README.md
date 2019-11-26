@@ -141,3 +141,7 @@ MORE COMING SOON.....
 
 ## What's Next???
 For more Pi fun, this time try Pizza Pi, write your first app to deploy and automate pizza orders from Dominos. Get started here: https://github.com/gamagori/pizzapi
+
+## Free Follow On Education
+[K8S Sandbox Learning Labs](https://labs.play-with-k8s.com)
+[Kubernetes Browser Based Training](https://www.katacoda.com/courses/kubernetes)
