@@ -1,4 +1,4 @@
-# Last Updated: 11/21/2019 1:45am
+# Last Updated: 09/11/2020 4:05pm
 ## Built For Raspberry Pi (3/4)
 ## Software Builds:
  - k3s
@@ -7,7 +7,7 @@
    - Kubernetes 1.16.3
    - containerd 1.3.0
  - k8s
-   - Raspbian Buster Lite (Kernel 4.19)
+   - Raspbian Buster Lite (Kernel 5.4) (Release Date Used: 08-20-2020)
    - Custom CPU Governor Plugin 1.0
    - Kubernetes 1.16.3
    - Docker-CE 19.03.4
@@ -101,7 +101,7 @@ There are two ways you can build this, I chose to go the Power over Ethernet (Po
 
 # Prerequisite Software
   - Software To Burn SD Card Images - [Etcher.io](https://www.balena.io/etcher/)
-  - SD Card Image - [Raspbian Buster Lite](https://www.raspberrypi.org/downloads/raspbian/)
+  - SD Card Image - [Raspbian Buster Lite](https://downloads.raspberrypi.org/raspios_lite_armhf_latest)
 
 
 # Image SD Card
