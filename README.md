@@ -1,12 +1,11 @@
 # Last Updated: 09/11/2020 4:05pm
-## Built For Raspberry Pi (3/4)
+## Built For Raspberry Pi (3B+/4B)
 ## Software Builds:
  - k3s (Updated 9/11/2020)
-   - k3s Service 1.16.15+ks1
-   - kernel 4.19.75-v71+
-   - Kubernetes 1.16.3
-   - containerd 1.3.0
- - k8s (Delayed Updated Happeing In Oct 2020)
+   - k3s Service 1.18.8+k3s1
+   - kernel 5.4.51-v71+
+   - containerd 1.3.3-k3s2
+ - k8s (Updated Happening In Oct 2020)
    - Raspbian Buster Lite (Kernel 5.4) (Release Date Used: 08-20-2020)
    - Custom CPU Governor Plugin 1.0 (Now Built It Script)
    - Kubernetes 1.16.15
@@ -18,9 +17,9 @@
 This is a project to help you create a Raspberry Pi cluster and demo DevOps practices from build/release to Chaos Engineering on it. According to a few friends, it's been deemed a Raspberry Bush. Credit for the name goes to Antony Zimzores. Check out the companion blog article [here](https://www.seanasaservice.com/blog/raspberry-bush). 
 
 # Cost
- - Raspberry Pi 3B+ based cluster will cost around $850 for an 8 node cluster with the following specs: 28 Cores @ 1.4GHz / 7GB RAM / 896GB Storage (This Assumes a Lab Desktop, Master Node, and 6 Slave Nodes). Network is limited to 300MB max throughput as it's bound to the same bus as the USB.
+ - Raspberry Pi 3B+ based cluster will cost around $850 for an 8 node cluster with the following specs: 28 Cores @ 1.4GHz / 7GB RAM / 896GB Storage (This Assumes a Lab Desktop, Master Node, and 6 Worker Nodes). Network is limited to 300MB max throughput as it's bound to the same bus as the USB.
 
- - Raspberry Pi 4B (4GB) based cluster will cost around $1000 for an 8 node cluster with the following specs: 28 Cores @ 1.5GHz / 28GB RAM / 896GB Storage (This Assumes a Lab Desktop, Master Node, and 6 Slave Nodes). If you need a bit more power, this build will also provide the benefit of a full 1GB network.
+ - Raspberry Pi 4B (4GB) based cluster will cost around $1000 for an 8 node cluster with the following specs: 28 Cores @ 1.5GHz / 28GB RAM / 896GB Storage (This Assumes a Lab Desktop, Master Node, and 6 Worker Nodes). If you need a bit more power, this build will also provide the benefit of a full 1GB network.
 
 # Build Materials
 There are two ways you can build this, I chose to go the Power over Ethernet (PoE) route as the switch I chose provided me with and additional two 1GB uplink ports (my chosen switch) and gave me the ability to consolidate the need for power into a single connection to the Pi. When I did the cost analysis, the additional price of the PoE Hats + PoE Switch was around $225 difference and gave me a cleaner look, less cables, 8 less power supplies, and 2 additional network ports. Feel free to use whatever switch you like as long as it doesnt exceed the INTERIOR dimensions of the case your using. Luckily I pulled spec sheets on all switches considered and found a fair compromise of what I wanted and kept things tidy and simple. I highly recommend the SanDisk Extreme Plus models as the performance is great and has the best perf/dollar ratio.
@@ -131,8 +130,8 @@ For the Windows Desktop node there is a niche group out there thats super passio
   - Second boot will take ~4 minutes and will take you to the OOBE screen, answer the questions and you're all set.
 
 
-## Raspbian Kubernetes Node (Master / Slave) Setup
-These machines will house the Kubernetes clusters, both master and slave, for use as a container platform to deploy our DevOps solutions and test projects.
+## Raspbian Kubernetes Node (Master / Worker) Setup
+These machines will house the Kubernetes cluster(s), both master and worker nodes, for use as a container platform to deploy our DevOps solutions and test projects.
   - First Login To the Raspberry Pi For The First Time With The Credentials: pi/raspberry
   - Change Your Root Password: <code> passwd </code>
   - (Optional) Configure Your Time Zone: <code> tzselect </code>
@@ -148,10 +147,21 @@ These machines will house the Kubernetes clusters, both master and slave, for us
     - <code> sudo sh build_kub_node.sh</code>
     - This process will take between 10-15 minutes (will vary based on sd card speed).
 
+## k3s Additional Container Installs (Will Customize Later)
+  - [Reference Install Guide](https://kauri.io/38-install-and-configure-a-kubernetes-cluster-with/418b3bc1e0544fbc955a4bbba6fff8a9/a)
+    - Helm: Package manager for Kubernetes
+    - MetalLB: Load-balancer implementation for bare metal Kubernetes clusters
+    - Nginx: Kubernetes Ingress Proxy
+    - Cert Manager: Native Kubernetes certificate management controller.
+    - Kubernetes Dashboard: A web-based Kubernetes user interface
+    
+## k8s Additional Installs (Will Update In Oct 2020)
+Coming Soon...
+
 ## Performance Tests
 Raspberry Pi 4B Build Times
-  - Setup - 13 Seconds
-  - k3s Build - ????
+  - Setup - 13 seconds
+  - k3s Build - ~1 minute
   - k8s Build - 13m 42s
 
 ## DevOps Tools
