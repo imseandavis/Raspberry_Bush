@@ -1,14 +1,14 @@
 # Last Updated: 09/11/2020 4:05pm
 ## Built For Raspberry Pi (3/4)
 ## Software Builds:
- - k3s
-   - k3s Service 1.0.0
+ - k3s (Updated 9/11/2020)
+   - k3s Service 1.16.15
    - kernel 4.19.75-v71+
    - Kubernetes 1.16.3
    - containerd 1.3.0
- - k8s
+ - k8s (Delayed Updated Happeing In Oct 2020)
    - Raspbian Buster Lite (Kernel 5.4) (Release Date Used: 08-20-2020)
-   - Custom CPU Governor Plugin 1.0
+   - Custom CPU Governor Plugin 1.0 (Now Built It Script)
    - Kubernetes 1.16.3
    - Docker-CE 19.03.4
    - Flannel 0.11.0
