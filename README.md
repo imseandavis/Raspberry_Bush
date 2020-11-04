@@ -5,7 +5,7 @@
    - k3s Service 1.18.8+k3s1
    - kernel 5.4.51-v71+
    - containerd 1.3.3-k3s2
- - k8s (Updated Happening In Oct 2020)
+ - k8s (Updated Happening In Jan 2021)
    - Raspbian Buster Lite (Kernel 5.4) (Release Date Used: 08-20-2020)
    - Custom CPU Governor Plugin 1.0 (Now Built It Script)
    - Kubernetes 1.16.15
@@ -17,9 +17,9 @@
 This is a project to help you create a Raspberry Pi cluster and demo DevOps practices from build/release to Chaos Engineering on it. According to a few friends, it's been deemed a Raspberry Bush. Credit for the name goes to Antony Zimzores. Check out the companion blog article [here](https://www.seanasaservice.com/blog/raspberry-bush). 
 
 # Cost
- - Raspberry Pi 3B+ based cluster will cost around $850 for an 8 node cluster with the following specs: 28 Cores @ 1.4GHz / 7GB RAM / 896GB Storage (This Assumes a Lab Desktop, Master Node, and 6 Worker Nodes). Network is limited to 300MB max throughput as it's bound to the same bus as the USB.
+ - Raspberry Pi 3B+ based cluster will cost around $850 for an 8 node cluster with the following specs: 28 Cores @ 1.4GHz (39.2GHz Total) / 7GB RAM / 896GB Storage (This Assumes a Master Node and 6 Worker Nodes). Network is limited to 300MB max throughput as it's bound to the same bus as the USB.
 
- - Raspberry Pi 4B (4GB) based cluster will cost around $1000 for an 8 node cluster with the following specs: 28 Cores @ 1.5GHz / 28GB RAM / 896GB Storage (This Assumes a Lab Desktop, Master Node, and 6 Worker Nodes). If you need a bit more power, this build will also provide the benefit of a full 1GB network.
+ - Raspberry Pi 4B (8GB) based cluster will cost ~$1000 for an 8 node cluster with the following specs: 28 Cores @ 1.5GHz (42GHz Total) / 56GB RAM / 896GB Storage (This Assumes a Master Node and 6 Worker Nodes). If you need a bit more power, this build will also provide the benefit of a full 1GB network.
 
 # Build Materials
 There are two ways you can build this, I chose to go the Power over Ethernet (PoE) route as the switch I chose provided me with and additional two 1GB uplink ports (my chosen switch) and gave me the ability to consolidate the need for power into a single connection to the Pi. When I did the cost analysis, the additional price of the PoE Hats + PoE Switch was around $225 difference and gave me a cleaner look, less cables, 8 less power supplies, and 2 additional network ports. Feel free to use whatever switch you like as long as it doesnt exceed the INTERIOR dimensions of the case your using. Luckily I pulled spec sheets on all switches considered and found a fair compromise of what I wanted and kept things tidy and simple. I highly recommend the SanDisk Extreme Plus models as the performance is great and has the best perf/dollar ratio.
@@ -51,7 +51,7 @@ There are two ways you can build this, I chose to go the Power over Ethernet (Po
    - 2x [SD Card - Minimum 16GB]()
    
 #### Recommended
-   - 8x [Raspberry Pi 4B]()
+   - 8x [Raspberry Pi 4B (8GB)]()
    - 8x [Raspberry Pi 4B Power Supply]()
    - 8x [SD Card - Minimum 64GB]()
    - 1x [PoE Switch]()
@@ -79,20 +79,20 @@ There are two ways you can build this, I chose to go the Power over Ethernet (Po
 
 #### Pi 4B Cluster
    - Pi4 Cluster 
-     - 8x [Raspberry Pi 4B (4GB)]()
-     - 8x [Raspberry Pi 4B Power Supply]()
-     - 8x [SD Card - Minimum 64GB]()
-     - 8x [SanDisk Extreme Plus 128GB Micro SD Card](https://www.bestbuy.com/site/sandisk-extreme-plus-128gb-microsdxc-uhs-i-memory-card/6282919.p?skuId=6282919) ($33.99/ea.)
-     - [.5ft Network Cables](https://www.amazon.com/gp/product/B06Y4722LW) ($12.59/10 Pack)
-     - 1x [YuanLey Smart PoE Switch](https://www.amazon.com/gp/product/B07H8YN9C3) ($59.99)
-     - 1x [C4 Labs Raspberry Pi Cluster Enclosure – Black Ice](https://www.c4labs.com/product/8-slot-stackable-cluster-case-raspberry-pi-3b-and-other-single-board-computers-color-options/) ($46.99)
-     - 1x [GANA Micro HDMI To HDMI Adapter](https://www.amazon.com/gp/product/B07K21HSQX/ref=ppx_yo_dt_b_asin_title_o03_s00?ie=UTF8&psc=1) (7.99)
+     - 8x [Raspberry Pi 4B (8GB)](https://www.microcenter.com/product/622539/pi4modelB8gb?src=raspberrypi) ($65/ea.)
+     - 8x [Raspberry Pi 4B Power Supply](https://www.microcenter.com/product/608170/raspberry-pi-4-official-15w-power-supply-us---black) ($7/ea.)
+     - 8x [SD Card - Minimum 128GB](https://www.bestbuy.com/site/sandisk-extreme-plus-128gb-microsdxc-uhs-i-memory-card/6282919.p?skuId=6282919) ($39/ea.)
+     - 8x [SanDisk Extreme Plus 128GB Micro SD Card](https://www.bestbuy.com/site/sandisk-extreme-plus-128gb-microsdxc-uhs-i-memory-card/6282919.p?skuId=6282919) ($34/ea.)
+     - [.5ft Network Cables](https://www.amazon.com/gp/product/B06Y4722LW) ($13/10 Pack)
+     - 1x [YuanLey Smart PoE Switch](https://www.amazon.com/gp/product/B07H8YN9C3) ($60)
+     - 1x [C4 Labs Raspberry Pi Cluster Enclosure – Black Ice](https://www.c4labs.com/product/8-slot-stackable-cluster-case-raspberry-pi-3b-and-other-single-board-computers-color-options/) ($47)
+     - 1x [GANA Micro HDMI To HDMI Adapter](https://www.amazon.com/gp/product/B07K21HSQX/ref=ppx_yo_dt_b_asin_title_o03_s00?ie=UTF8&psc=1) ($8)
 
    - Optional Non PoE Build (Won't be able to use the same case)
-     - 1x [Anker 60W 10 Port USB](https://www.amazon.com/Anker-10-Port-Charger-PowerPort-iPhone/dp/B00YRYS4T4) ($39.99)
-     - 8x [Micro USB Cables](https://www.amazon.com/Sabrent-6-Pack-Premium-Cables-CB-UM61/dp/B011KMSNXM) ($7.99)
+     - 1x [Anker 60W 10 Port USB](https://www.amazon.com/Anker-10-Port-Charger-PowerPort-iPhone/dp/B00YRYS4T4) ($40)
+     - 8x [Micro USB Cables](https://www.amazon.com/Sabrent-6-Pack-Premium-Cables-CB-UM61/dp/B011KMSNXM) ($8)
       
-   - Optional Screen
+   - Optional Case / Screen
      - 1x [3.5 Pi Case + Screen](https://www.amazon.com/Raspberry-320x480-Monitor-Raspbian-RetroPie/dp/B07N38B86S/)
       
 </p>
@@ -116,10 +116,10 @@ Desktop Node will be the standalone workstation (in your cluster) from which eve
 ### Linux Desktop Node (Coming soon...)
 Pretty standard stuff here...
   - Download the [Raspberry Pi Desktop Image](https://www.raspberrypi.org/downloads/raspberry-pi-os/) and Flash to SD with Etcher
-  - (Coming soon...) Install your tools by running the command: <code>sudo sh installtools.sh</code>
+  - Install your tools by running the command: <code>sudo sh installtools.sh</code> (Coming soon...) 
   
 
-### Windows Desktop Node (Raspberry Pi 4B Only)
+### Windows Desktop Node (Raspberry Pi 4B Only - Reccommend 8GB Version)
 For the Windows Desktop node there is a niche group out there thats super passionate about Windows on RPI, here's how to get started:
   - Go to the [WoRP Project Page](https://www.worproject.ml/downloads) and download the WoRP Imager
   - Sign up for the [WoRP Discord channel](https://discord.com/invite/jQCpfVK) and follow the instructions to get access to the WoRP Image
@@ -128,6 +128,7 @@ For the Windows Desktop node there is a niche group out there thats super passio
   - Load up the SD card in your RPi and boot
   - Initial boot will take ~7 minutes and will auto-reboot (It will look like it's froze for the first few minutes, just leave it)
   - Second boot will take ~4 minutes and will take you to the OOBE screen, answer the questions and you're all set.
+  - Install WOR_Control_Panel (Found In Discord Channel)
 
 
 ## Raspbian Kubernetes Node (Master / Worker) Setup
@@ -145,7 +146,7 @@ These machines will house the Kubernetes cluster(s), both master and worker node
     - This process will take about 15 seconds.
   - After reboot, run the node setup script by running the following command:
     - <code> sudo sh build_kub_node.sh</code>
-    - This process will take between 10-15 minutes (will vary based on sd card speed).
+    - This process will take between 1-15 minutes (will vary based on sd card speed).
 
 ## k3s Additional Container Installs (Will Customize Later)
   - [Reference Install Guide](https://kauri.io/38-install-and-configure-a-kubernetes-cluster-with/418b3bc1e0544fbc955a4bbba6fff8a9/a)
@@ -155,7 +156,7 @@ These machines will house the Kubernetes cluster(s), both master and worker node
     - Cert Manager: Native Kubernetes certificate management controller.
     - Kubernetes Dashboard: A web-based Kubernetes user interface
     
-## k8s Additional Installs (Will Update In Oct 2020)
+## k8s Additional Installs (Will Update In Jan 2021)
 Coming Soon...
 
 ## Performance Tests
